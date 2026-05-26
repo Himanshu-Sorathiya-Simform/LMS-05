@@ -1,4 +1,5 @@
 import Button from "./Button.tsx";
+import Icon from "./Icon.tsx";
 import Input from "./Input.tsx";
 
 function Header() {
@@ -6,7 +7,12 @@ function Header() {
 		<header className="flex gap-2">
 			<Input />
 
-			<Button handler={() => {}}>Add</Button>
+			<Button handler={() => {}}>
+				<Icon
+					id="create"
+					className="h-7 w-7 text-white"
+				/>
+			</Button>
 		</header>
 	);
 }

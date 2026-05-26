@@ -4,9 +4,11 @@ import ListContainer from "./ListContainer.tsx";
 function AppLayout() {
 	return (
 		<section className="h-screen w-screen flex bg-white items-center justify-center">
-			<Header />
+			<div className="flex flex-col items-center">
+				<Header />
 
-			<ListContainer />
+				<ListContainer />
+			</div>
 		</section>
 	);
 }

@@ -7,7 +7,7 @@ function ListContainer() {
 
 	return (
 		<main className="flex flex-col gap-2">
-			<ul>
+			<ul className="flex flex-col gap-1">
 				{todos.map((todo) => (
 					<ListItem todo={todo} />
 				))}

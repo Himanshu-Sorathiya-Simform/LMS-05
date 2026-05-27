@@ -1,6 +1,6 @@
-import Button from "./Button.tsx";
-import Icon from "./Icon.tsx";
 import Today from "./Today.tsx";
+import Button from "./ui/Button.tsx";
+import Icon from "./ui/Icon.tsx";
 
 function Header() {
 	return (

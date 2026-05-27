@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { data } from "../data/data.ts";
 import type { Todo } from "../types/types.ts";
-import Button from "./Button.tsx";
-import Icon from "./Icon.tsx";
-import Input from "./Input.tsx";
+import Button from "./ui/Button.tsx";
+import Icon from "./ui/Icon.tsx";
+import Input from "./ui/Input.tsx";
 
 function ListContainer() {
 	const [todos, setTodos] = useState(data);

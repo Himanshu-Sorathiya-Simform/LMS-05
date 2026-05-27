@@ -1,5 +1,5 @@
-import Header from "./Header.tsx";
-import ListContainer from "./ListContainer.tsx";
+import Header from "../Header.tsx";
+import ListContainer from "../ListContainer.tsx";
 
 function AppLayout() {
 	return (

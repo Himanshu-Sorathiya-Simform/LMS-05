@@ -23,7 +23,7 @@ function Input({ type = "text", className = "" }: InputProps) {
 			id={`${id}task-name`}
 			name={`${id}task-name`}
 			type={type}
-			className={`px-5 py-3 text-xl outline-1 outline-purple-400 focus:outline-purple-700 transition focus:outline-2 duration-150 rounded-full bg-purple-50 placeholder:text-purple-400 focus:placeholder:text-purple-500 text-purple-800 ${className}`}
+			className={`rounded-full bg-purple-50 px-5 py-3 text-xl text-purple-800 outline-1 outline-purple-400 transition duration-150 placeholder:text-purple-400 focus:outline-2 focus:outline-purple-700 focus:placeholder:text-purple-500 ${className}`}
 			placeholder="Enter task name here..."
 		/>
 	);

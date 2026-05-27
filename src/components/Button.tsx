@@ -7,7 +7,7 @@ interface ButtonProps {
 function Button({ handler = () => {}, className = "", children }: ButtonProps) {
 	return (
 		<button
-			className={`cursor-pointer flex items-center justify-center ${className}`}
+			className={`flex cursor-pointer items-center justify-center ${className}`}
 			onClick={handler}
 		>
 			{children}

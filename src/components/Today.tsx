@@ -8,7 +8,7 @@ function Today() {
 
 	return (
 		<div>
-			<p className="text-2xl ">
+			<p className="text-2xl">
 				{days[day]}, {date} {months[month]}
 			</p>
 		</div>

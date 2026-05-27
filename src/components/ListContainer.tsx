@@ -21,31 +21,31 @@ function ListContainer() {
 
 function ListItem({ todo }: { todo: Todo }) {
 	return (
-		<li className="max-w-2xl border-gray-500 flex items-start gap-3 py-2 rounded-md">
+		<li className="flex max-w-2xl items-start gap-3 rounded-md border-gray-500 py-2">
 			<Input
 				type="checkbox"
-				className="mt-2 scale-125 focus-visible:outline-offset-1 focus-visible:outline-gray-500 rounded-lg focus-visible:outline-1 "
+				className="mt-2 scale-125 rounded-lg focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-gray-500"
 			/>
 
-			<div className="flex flex-col gap-1 flex-1">
-				<p className=" text-lg max-w-132 truncate">{todo.title}</p>
+			<div className="flex flex-1 flex-col gap-1">
+				<p className="max-w-132 truncate text-lg">{todo.title}</p>
 
-				<p className="font-light text-gray-600 max-w-132 truncate">
+				<p className="max-w-132 truncate font-light text-gray-600">
 					{todo.description}
 				</p>
 			</div>
 
-			<Button className="mt-2 hover:bg-gray-200 focus-visible:outline-1 focus-visible:outline-gray-500 p-1.5 rounded-lg transition duration-100 cursor-pointer">
+			<Button className="mt-2 cursor-pointer rounded-lg p-1.5 transition duration-100 hover:bg-gray-200 focus-visible:outline-1 focus-visible:outline-gray-500">
 				<Icon
 					id="edit"
-					className="h-6 w-6  "
+					className="h-6 w-6"
 				></Icon>
 			</Button>
 
-			<Button className="mt-2 hover:bg-gray-200 focus-visible:outline-1 focus-visible:outline-gray-500 p-1.5 rounded-lg transition duration-100 cursor-pointer">
+			<Button className="mt-2 cursor-pointer rounded-lg p-1.5 transition duration-100 hover:bg-gray-200 focus-visible:outline-1 focus-visible:outline-gray-500">
 				<Icon
 					id="delete"
-					className="h-6 w-6 text-red-500 stroke-1 "
+					className="h-6 w-6 stroke-1 text-red-500"
 				></Icon>
 			</Button>
 		</li>

@@ -4,14 +4,14 @@ import Today from "./Today.tsx";
 
 function Header() {
 	return (
-		<header className="flex flex-col items-start self-start gap-7">
-			<h1 className="text-3xl font-sans font-semibold ">To-Do</h1>
+		<header className="flex flex-col items-start gap-7 self-start">
+			<h1 className="font-sans text-3xl font-semibold">To-Do</h1>
 
 			<Today />
 
 			<div className="flex gap-2">
 				<Button
-					className="font-semibold gap-1 rounded-full px-4 py-2  hover:bg-blue-700 focus:outline-1 focus:bg-blue-700 focus:outline-blue-700 transition duration-100 bg-blue-600 text-white "
+					className="gap-1 rounded-full bg-blue-600 px-4 py-2 font-semibold text-white transition duration-100 hover:bg-blue-700 focus:bg-blue-700 focus:outline-1 focus:outline-blue-700"
 					handler={() => {}}
 				>
 					<Icon

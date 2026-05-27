@@ -9,8 +9,8 @@ function ListContainer() {
 	const [todos, setTodos] = useState(data);
 
 	return (
-		<main className="flex flex-col gap-2">
-			<ul className="flex flex-col gap-2">
+		<main className="flex flex-col gap-2 overflow-hidden">
+			<ul className="flex max-h-96 flex-col gap-2 overflow-y-scroll">
 				{todos.map((todo) => (
 					<ListItem todo={todo} />
 				))}
@@ -21,7 +21,7 @@ function ListContainer() {
 
 function ListItem({ todo }: { todo: Todo }) {
 	return (
-		<li className="flex max-w-2xl items-start gap-3 rounded-md border-gray-500 py-2">
+		<li className="flex max-w-2xl items-start gap-3 rounded-md border-gray-500 px-2 py-2">
 			<Input
 				type="checkbox"
 				className="mt-2 scale-125 rounded-lg focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-gray-500"
@@ -30,9 +30,11 @@ function ListItem({ todo }: { todo: Todo }) {
 			<div className="flex flex-1 flex-col gap-1">
 				<p className="max-w-132 truncate text-lg">{todo.title}</p>
 
-				<p className="max-w-132 truncate font-light text-gray-600">
-					{todo.description}
-				</p>
+				{todo.description && (
+					<p className="max-w-132 truncate font-light text-gray-600">
+						{todo.description}
+					</p>
+				)}
 			</div>
 
 			<Button className="mt-2 cursor-pointer rounded-lg p-1.5 transition duration-100 hover:bg-gray-200 focus-visible:outline-1 focus-visible:outline-gray-500">

@@ -4,7 +4,7 @@ import Icon from "./ui/Icon.tsx";
 
 function Header() {
 	return (
-		<header className="flex flex-col items-start gap-7 self-start">
+		<header className="flex flex-col items-start gap-7 self-start p-2">
 			<h1 className="font-sans text-3xl font-semibold">To-Do</h1>
 
 			<Today />

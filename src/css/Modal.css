@@ -27,7 +27,7 @@
 	box-shadow: var(--modal-shadow, 0 4px 12px rgba(0, 0, 0, 0.15));
 }
 
-:where(dialog.universal-modal::backdrop) {
+dialog.universal-modal::backdrop {
 	background-color: var(--modal-backdrop-bg, rgba(0, 0, 0, 0.5));
 	backdrop-filter: blur(var(--modal-backdrop-blur, none));
 }

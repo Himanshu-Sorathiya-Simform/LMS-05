@@ -11,7 +11,7 @@ function Header() {
 
 			<div className="flex gap-2">
 				<Button
-					className="gap-1 rounded-full bg-blue-600 px-4 py-2 font-semibold text-white transition duration-100 hover:bg-blue-700 focus:bg-blue-700 focus:outline-1 focus:outline-blue-700"
+					className="gap-1 rounded-full bg-blue-600 px-4 py-2 font-semibold text-white duration-100 hover:bg-blue-700 focus:bg-blue-700 focus:outline-1 focus:outline-blue-700"
 					handler={() => {}}
 				>
 					<Icon

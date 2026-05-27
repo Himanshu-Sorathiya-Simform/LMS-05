@@ -13,7 +13,7 @@ function Button({
 }: ButtonProps) {
 	return (
 		<button
-			className={`flex cursor-pointer items-center justify-center ${className}`}
+			className={`flex cursor-pointer items-center justify-center transition ${className}`}
 			onClick={handler}
 			aria-label={label}
 		>

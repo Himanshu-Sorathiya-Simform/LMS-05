@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import { createPortal } from "react-dom";
 import "./../../css/Modal.css";
-
 interface ModalProps {
 	onClose: () => void;
 	children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { days, months } from "../constants/DateAndTime.ts";
+import { days, months } from "../constants/dateAndTime.ts";
 
 function Today() {
 	const dateObj = new Date();

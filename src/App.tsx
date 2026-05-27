@@ -1,4 +1,4 @@
-import AppLayout from "./components/AppLayout.tsx";
+import AppLayout from "./components/layouts/AppLayout.tsx";
 
 function App() {
 	return <AppLayout />;

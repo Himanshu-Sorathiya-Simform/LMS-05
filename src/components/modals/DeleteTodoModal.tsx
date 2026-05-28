@@ -2,7 +2,7 @@ import type { Todo } from "../../types/types.ts";
 import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
 
-function DeleteModal({
+function DeleteTodoModal({
 	todo,
 	handleCloseModal,
 	handleDelete,
@@ -48,4 +48,4 @@ function DeleteModal({
 	);
 }
 
-export default DeleteModal;
+export default DeleteTodoModal;

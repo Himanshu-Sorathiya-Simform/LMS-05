@@ -3,7 +3,7 @@ import { data } from "../data/data.ts";
 import type { Todo } from "../types/types.ts";
 import ModalLayout from "./layouts/ModalLayout.tsx";
 import ListItem from "./ListItem.tsx";
-import DeleteModal from "./modals/DeleteModal.tsx";
+import DeleteTodoModal from "./modals/DeleteTodoModal.tsx";
 
 function ListContainer() {
 	const [todos] = useState(data);
@@ -14,7 +14,7 @@ function ListContainer() {
 
 	const ref: RefObject<HTMLDialogElement | null> = useRef(null);
 
-	function handleShowModal(type: string, data: Todo) {
+	function handleShowModal(type: string, data?: Todo) {
 		if (!ref.current) return;
 
 		setModalState({ type, data });
@@ -46,7 +46,7 @@ function ListContainer() {
 				onClose={handleCloseModal}
 			>
 				{modalState.type === "delete" && (
-					<DeleteModal
+					<DeleteTodoModal
 						handleDelete={() => {
 							console.log(modalState.data);
 						}}

@@ -30,6 +30,24 @@ function Input({
 			/>
 		);
 
+	if (type === "select")
+		return (
+			<div className="flex flex-col gap-1 text-lg">
+				{label && <label htmlFor={id}>{label}</label>}
+
+				<select
+					id={id}
+					name={name}
+					defaultValue={typeof value === "boolean" ? `${value}` : ""}
+					className={`rounded-full px-5 py-3 text-xl transition ${className}`}
+				>
+					<option value="">Select Status</option>
+					<option value="true">Completed</option>
+					<option value="false">Not Completed</option>
+				</select>
+			</div>
+		);
+
 	return (
 		<div className="flex flex-col gap-1 text-lg">
 			{label && <label htmlFor={id}>{label}</label>}

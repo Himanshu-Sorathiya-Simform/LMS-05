@@ -17,11 +17,13 @@ function EditTodoModal({
 	function handleFormSubmit(formdata) {
 		console.log(formdata.get("todo-title"));
 		console.log(formdata.get("todo-description"));
+		console.log(formdata.get("todo-completed"));
 
 		handleEdit();
 
 		// const title = formdata.get("todo-title");
 		// const description = formdata.get("todo-description");
+		// const completed = formdata.get("todo-completed");
 	}
 
 	return (
@@ -30,7 +32,7 @@ function EditTodoModal({
 
 			<form
 				action={handleFormSubmit}
-				className="flex flex-col gap-3"
+				className="flex flex-col gap-4"
 			>
 				<Input
 					name="todo-title"
@@ -45,6 +47,14 @@ function EditTodoModal({
 					label="Task Description"
 					value={todo.description ?? ""}
 					placeholder="Enter task description here..."
+					className="bg-neutral-50 text-neutral-800 outline-1 outline-neutral-400 placeholder:text-neutral-400 focus:outline-2 focus:outline-neutral-700 focus:placeholder:text-neutral-500"
+				/>
+
+				<Input
+					type="select"
+					name="todo-completed"
+					label="Task Completed Status"
+					value={todo.completed ?? ""}
 					className="bg-neutral-50 text-neutral-800 outline-1 outline-neutral-400 placeholder:text-neutral-400 focus:outline-2 focus:outline-neutral-700 focus:placeholder:text-neutral-500"
 				/>
 

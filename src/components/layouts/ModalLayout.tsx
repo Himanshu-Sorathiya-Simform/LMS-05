@@ -7,7 +7,7 @@ interface ModalProps {
 	className?: string;
 }
 
-const Modal = forwardRef<HTMLDialogElement, ModalProps>(
+const ModalLayout = forwardRef<HTMLDialogElement, ModalProps>(
 	({ onClose, children, className = "" }, ref) => {
 		const handleCancel = (event: React.SyntheticEvent<HTMLDialogElement>) => {
 			event.preventDefault();
@@ -27,6 +27,6 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
 	},
 );
 
-Modal.displayName = "Modal";
+ModalLayout.displayName = "Modal";
 
-export default Modal;
+export default ModalLayout;

@@ -13,6 +13,8 @@ function ListItem({
 	return (
 		<li className="flex max-w-2xl items-start gap-3 rounded-md border-gray-500 px-2 py-2">
 			<Input
+				value={todo.completed}
+				name="status-toggle"
 				type="checkbox"
 				label={`Checkbox for ${todo.title}`}
 				className="mt-2 scale-125 rounded-lg focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-gray-500"

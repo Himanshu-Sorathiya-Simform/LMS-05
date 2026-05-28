@@ -15,7 +15,7 @@ function DeleteTodoModal({
 
 	return (
 		<div className="relative flex flex-col gap-7">
-			<p className="text-xl">Delete {todo.title}?</p>
+			<p className="text-xl">Delete "{todo.title}"?</p>
 
 			<p>Please confirm deletion of {todo.title}.</p>
 

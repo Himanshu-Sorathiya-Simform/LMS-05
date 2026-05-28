@@ -4,6 +4,7 @@ import type { Todo } from "../types/types.ts";
 import ModalLayout from "./layouts/ModalLayout.tsx";
 import ListItem from "./ListItem.tsx";
 import DeleteTodoModal from "./modals/DeleteTodoModal.tsx";
+import EditTodoModal from "./modals/EditTodoModal.tsx";
 
 function ListContainer() {
 	const [todos] = useState(data);
@@ -48,6 +49,15 @@ function ListContainer() {
 				{modalState.type === "delete" && (
 					<DeleteTodoModal
 						handleDelete={() => {
+							console.log(modalState.data);
+						}}
+						handleCloseModal={handleCloseModal}
+						todo={modalState.data}
+					/>
+				)}
+				{modalState.type === "edit" && (
+					<EditTodoModal
+						handleEdit={() => {
 							console.log(modalState.data);
 						}}
 						handleCloseModal={handleCloseModal}

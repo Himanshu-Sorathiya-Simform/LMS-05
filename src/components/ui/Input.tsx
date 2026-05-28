@@ -4,14 +4,16 @@ interface InputProps {
 	name: string;
 	label?: string;
 	type?: string;
+	value?: string | number | boolean;
 	placeholder?: string;
 	className?: string;
 }
 
 function Input({
+	type = "text",
 	name = "",
 	label = "",
-	type = "text",
+	value = "",
 	className = "",
 	placeholder = "",
 }: InputProps) {
@@ -22,6 +24,7 @@ function Input({
 			<input
 				name={name}
 				aria-label={label}
+				defaultChecked={typeof value === "boolean" ? value : false}
 				type={type}
 				className={`cursor-pointer ${className}`}
 			/>
@@ -34,6 +37,7 @@ function Input({
 			<input
 				id={id}
 				name={name}
+				defaultValue={typeof value !== "boolean" ? value : ""}
 				type={type}
 				className={`rounded-full px-5 py-3 text-xl transition ${className}`}
 				placeholder={placeholder}

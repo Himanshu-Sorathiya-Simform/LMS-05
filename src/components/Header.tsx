@@ -3,11 +3,11 @@ import Today from "./Today.tsx";
 import Button from "./ui/Button.tsx";
 import Icon from "./ui/Icon.tsx";
 
-function Header({
-	handleShowModal,
-}: {
+interface HeaderProps {
 	handleShowModal: (type: string, data?: Todo) => void;
-}) {
+}
+
+function Header({ handleShowModal }: HeaderProps) {
 	return (
 		<header className="flex flex-col items-start gap-7 self-start p-2">
 			<h1 className="font-sans text-3xl font-semibold">To-Do</h1>

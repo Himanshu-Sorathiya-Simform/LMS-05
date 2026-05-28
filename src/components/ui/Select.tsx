@@ -13,10 +13,10 @@ function Select({ name = "", label = "", ...props }: SelectProps) {
 			{label && <label htmlFor={id}>{label}</label>}
 
 			<select
+				{...props}
 				id={id}
 				name={name}
 				className={`rounded-full px-5 py-3 text-xl transition ${props.className}`}
-				{...props}
 			>
 				<option value="">Select Status</option>
 				<option value="true">Completed</option>

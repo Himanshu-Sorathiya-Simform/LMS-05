@@ -1,19 +1,27 @@
+import { type ActionDispatch } from "react";
 import type { Todo } from "../types/types.ts";
+import type { TodosActionState } from "./reducer/todosReducer.ts";
 import Button from "./ui/Button.tsx";
 import Icon from "./ui/Icon.tsx";
 import Input from "./ui/Input.tsx";
 
-function ListItem({
-	todo,
-	handleShowModal,
-}: {
+interface ListItemProps {
 	todo: Todo;
 	handleShowModal: (type: string, data?: Todo) => void;
-}) {
+	handleEdit: ActionDispatch<[action: TodosActionState]>;
+}
+
+function ListItem({ todo, handleShowModal, handleEdit }: ListItemProps) {
 	return (
-		<li className="flex max-w-2xl items-start gap-3 rounded-md border-gray-500 px-2 py-2">
+		<li className="flex items-start gap-3 rounded-md border-gray-500 px-2 py-2">
 			<Input
 				checked={todo.completed}
+				onChange={() => {
+					handleEdit({
+						type: "UPDATE",
+						payload: { ...todo, completed: !todo.completed },
+					});
+				}}
 				name="status-toggle"
 				type="checkbox"
 				label={`Checkbox for ${todo.title}`}

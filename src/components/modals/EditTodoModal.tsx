@@ -6,23 +6,17 @@ import Icon from "../ui/Icon.tsx";
 import Input from "../ui/Input.tsx";
 import Select from "../ui/Select.tsx";
 
-function EditTodoModal({
-	todo,
-	handleCloseModal,
-	handleEdit,
-}: {
+interface EditTodoModalProps {
 	todo: Todo | undefined;
 	handleEdit: ActionDispatch<[action: TodosActionState]>;
 	handleCloseModal: () => void;
-}) {
+}
+
+function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProps) {
 	if (!todo) return;
 
 	function handleFormSubmit(formdata) {
 		if (!todo) return;
-
-		console.log(formdata.get("todo-title"));
-		console.log(formdata.get("todo-description"));
-		console.log(formdata.get("todo-completed"));
 
 		handleEdit({
 			type: "UPDATE",
@@ -47,7 +41,7 @@ function EditTodoModal({
 				<Input
 					name="todo-title"
 					label="Task Title"
-					value={todo.title}
+					defaultValue={todo.title}
 					placeholder="Enter task title here..."
 					className="bg-neutral-50 text-neutral-800 outline-1 outline-neutral-400 placeholder:text-neutral-400 focus:outline-2 focus:outline-neutral-700 focus:placeholder:text-neutral-500"
 				/>
@@ -55,7 +49,7 @@ function EditTodoModal({
 				<Input
 					name="todo-description"
 					label="Task Description"
-					value={todo.description ?? ""}
+					defaultValue={todo.description ?? ""}
 					placeholder="Enter task description here..."
 					className="bg-neutral-50 text-neutral-800 outline-1 outline-neutral-400 placeholder:text-neutral-400 focus:outline-2 focus:outline-neutral-700 focus:placeholder:text-neutral-500"
 				/>
@@ -63,7 +57,7 @@ function EditTodoModal({
 				<Select
 					name="todo-completed"
 					label="Task Completed Status"
-					value={`${todo.completed}`}
+					defaultValue={`${todo.completed}`}
 					className="rounded-full bg-neutral-50 px-5 py-3 text-xl text-neutral-800 outline-1 outline-neutral-400 transition placeholder:text-neutral-400 focus:outline-2 focus:outline-neutral-700 focus:placeholder:text-neutral-500"
 				/>
 

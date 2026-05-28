@@ -32,17 +32,16 @@ function AppLayout() {
 		ref.current.close();
 	}
 
-	console.log(todos);
-
 	return (
 		<>
 			<section className="flex h-screen w-screen items-center justify-center bg-white p-6">
-				<div className="flex h-11/12 max-w-3xl flex-col items-center gap-8">
+				<div className="flex h-11/12 w-2xl max-w-full flex-col items-center gap-8">
 					<Header handleShowModal={handleShowModal} />
 
 					<ListContainer
 						todos={todos}
 						handleShowModal={handleShowModal}
+						handleEdit={dispatch}
 					/>
 				</div>
 			</section>

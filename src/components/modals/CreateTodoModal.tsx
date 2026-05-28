@@ -4,17 +4,13 @@ import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
 import Input from "../ui/Input.tsx";
 
-function CreateTodoModal({
-	handleCloseModal,
-	handleCreate,
-}: {
+interface CreateTodoModalProps {
 	handleCloseModal: () => void;
 	handleCreate: ActionDispatch<[action: TodosActionState]>;
-}) {
-	function handleFormSubmit(formdata) {
-		console.log(formdata.get("todo-title"));
-		console.log(formdata.get("todo-description"));
+}
 
+function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProps) {
+	function handleFormSubmit(formdata) {
 		handleCreate({
 			type: "ADD",
 			payload: {

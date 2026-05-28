@@ -1,21 +1,24 @@
+import type { ActionDispatch } from "react";
 import type { Todo } from "../types/types.ts";
 import ListItem from "./ListItem.tsx";
+import type { TodosActionState } from "./reducer/todosReducer.ts";
 
-function ListContainer({
-	todos,
-	handleShowModal,
-}: {
+interface ListContainerProps {
 	todos: Todo[];
 	handleShowModal: (type: string, data?: Todo) => void;
-}) {
+	handleEdit: ActionDispatch<[action: TodosActionState]>;
+}
+
+function ListContainer({ todos, handleShowModal, handleEdit }: ListContainerProps) {
 	return (
-		<main className="flex flex-col gap-2 overflow-hidden">
+		<main className="flex w-full flex-col gap-2 overflow-hidden">
 			<ul className="flex scrollbar-thin flex-col gap-2 overflow-y-scroll">
 				{todos.map((todo) => (
 					<ListItem
 						key={todo.id}
 						todo={todo}
 						handleShowModal={handleShowModal}
+						handleEdit={handleEdit}
 					/>
 				))}
 			</ul>

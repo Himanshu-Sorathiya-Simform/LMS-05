@@ -4,15 +4,17 @@ import type { TodosActionState } from "../reducer/todosReducer.ts";
 import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
 
+interface DeleteTodoModalProps {
+	todo: Todo | undefined;
+	handleDelete: ActionDispatch<[action: TodosActionState]>;
+	handleCloseModal: () => void;
+}
+
 function DeleteTodoModal({
 	todo,
 	handleCloseModal,
 	handleDelete,
-}: {
-	todo: Todo | undefined;
-	handleDelete: ActionDispatch<[action: TodosActionState]>;
-	handleCloseModal: () => void;
-}) {
+}: DeleteTodoModalProps) {
 	if (!todo) return;
 
 	return (

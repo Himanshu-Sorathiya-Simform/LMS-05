@@ -14,6 +14,7 @@ function Input({ name = "", label = "", ...props }: InputProps) {
 				{...props}
 				id={id}
 				name={name}
+				aria-label={label}
 			/>
 		);
 	}

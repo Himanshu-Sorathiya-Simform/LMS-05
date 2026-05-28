@@ -1,16 +1,18 @@
+interface IconProps {
+	id: string;
+	className?: string;
+	onClick?: () => void;
+	onMouseEnter?: () => void;
+	onMouseLeave?: () => void;
+}
+
 function Icon({
 	id,
 	className = "",
 	onClick = () => {},
 	onMouseEnter = () => {},
 	onMouseLeave = () => {},
-}: {
-	id: string;
-	className?: string;
-	onClick?: () => void;
-	onMouseEnter?: () => void;
-	onMouseLeave?: () => void;
-}) {
+}: IconProps) {
 	return (
 		<svg
 			className={className}

@@ -1,4 +1,5 @@
-import type { ActionDispatch } from "react";
+import { type ActionDispatch, useState } from "react";
+import { validate } from "../../utils/validateTodoFormResponse.ts";
 import type { TodosActionState } from "../reducer/todosReducer.ts";
 import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
@@ -10,18 +11,32 @@ interface CreateTodoModalProps {
 }
 
 function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProps) {
+	const [error, setError] = useState("");
+
 	function handleFormSubmit(formdata) {
-		handleCreate({
-			type: "ADD",
-			payload: {
-				id: Math.random(),
-				title: formdata.get("todo-title"),
-				description: formdata.get("todo-description"),
-				createdAt: Date.now(),
-				completed: false,
-			},
-		});
-		handleCloseModal();
+		const title: [string, string] = ["title", formdata.get("todo-title")];
+		const description: [string, string] = [
+			"description",
+			formdata.get("todo-description"),
+		];
+
+		const isValid = validate([title, description]);
+
+		if (isValid === true) {
+			handleCreate({
+				type: "ADD",
+				payload: {
+					id: Math.random(),
+					title: title[1],
+					description: description[1],
+					createdAt: Date.now(),
+					completed: false,
+				},
+			});
+			handleCloseModal();
+		} else {
+			setError(isValid ?? "");
+		}
 	}
 
 	return (
@@ -32,6 +47,8 @@ function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProp
 				action={handleFormSubmit}
 				className="flex flex-col gap-3"
 			>
+				<p className="text-red-600">{error}</p>
+
 				<Input
 					name="todo-title"
 					label="Task Title"

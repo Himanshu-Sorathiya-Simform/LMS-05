@@ -1,5 +1,6 @@
-import type { ActionDispatch } from "react";
+import { type ActionDispatch, useState } from "react";
 import type { Todo } from "../../types/types.ts";
+import { validate } from "../../utils/validateTodoFormResponse.ts";
 import type { TodosActionState } from "../reducer/todosReducer.ts";
 import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
@@ -13,21 +14,39 @@ interface EditTodoModalProps {
 }
 
 function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProps) {
+	const [error, setError] = useState("");
+
 	if (!todo) return;
 
 	function handleFormSubmit(formdata) {
 		if (!todo) return;
 
-		handleEdit({
-			type: "UPDATE",
-			payload: {
-				...todo,
-				title: formdata.get("todo-title"),
-				description: formdata.get("todo-description"),
-				completed: formdata.get("todo-completed") === "true" ? true : false,
-			},
-		});
-		handleCloseModal();
+		const title: [string, string] = ["title", formdata.get("todo-title")];
+		const description: [string, string] = [
+			"description",
+			formdata.get("todo-description"),
+		];
+		const completed: [string, boolean] = [
+			"completed",
+			formdata.get("todo-completed") === "true" ? true : false,
+		];
+
+		const isValid = validate([title, description, completed]);
+
+		if (isValid === true) {
+			handleEdit({
+				type: "UPDATE",
+				payload: {
+					...todo,
+					title: title[1],
+					description: description[1],
+					completed: completed[1],
+				},
+			});
+			handleCloseModal();
+		} else {
+			setError(isValid ?? "");
+		}
 	}
 
 	return (
@@ -38,6 +57,8 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 				action={handleFormSubmit}
 				className="flex flex-col gap-4"
 			>
+				<p className="text-red-600">{error}</p>
+
 				<Input
 					name="todo-title"
 					label="Task Title"

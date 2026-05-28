@@ -18,7 +18,6 @@ function Select({ name = "", label = "", ...props }: SelectProps) {
 				name={name}
 				className={`rounded-full px-5 py-3 text-xl transition ${props.className}`}
 			>
-				<option value="">Select Status</option>
 				<option value="true">Completed</option>
 				<option value="false">Not Completed</option>
 			</select>

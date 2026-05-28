@@ -1,7 +1,10 @@
+import type { ActionDispatch } from "react";
 import type { Todo } from "../../types/types.ts";
+import type { TodosActionState } from "../reducer/todosReducer.ts";
 import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
 import Input from "../ui/Input.tsx";
+import Select from "../ui/Select.tsx";
 
 function EditTodoModal({
 	todo,
@@ -9,21 +12,28 @@ function EditTodoModal({
 	handleEdit,
 }: {
 	todo: Todo | undefined;
+	handleEdit: ActionDispatch<[action: TodosActionState]>;
 	handleCloseModal: () => void;
-	handleEdit: () => void;
 }) {
 	if (!todo) return;
 
 	function handleFormSubmit(formdata) {
+		if (!todo) return;
+
 		console.log(formdata.get("todo-title"));
 		console.log(formdata.get("todo-description"));
 		console.log(formdata.get("todo-completed"));
 
-		handleEdit();
-
-		// const title = formdata.get("todo-title");
-		// const description = formdata.get("todo-description");
-		// const completed = formdata.get("todo-completed");
+		handleEdit({
+			type: "UPDATE",
+			payload: {
+				...todo,
+				title: formdata.get("todo-title"),
+				description: formdata.get("todo-description"),
+				completed: formdata.get("todo-completed") === "true" ? true : false,
+			},
+		});
+		handleCloseModal();
 	}
 
 	return (
@@ -50,12 +60,11 @@ function EditTodoModal({
 					className="bg-neutral-50 text-neutral-800 outline-1 outline-neutral-400 placeholder:text-neutral-400 focus:outline-2 focus:outline-neutral-700 focus:placeholder:text-neutral-500"
 				/>
 
-				<Input
-					type="select"
+				<Select
 					name="todo-completed"
 					label="Task Completed Status"
-					value={todo.completed ?? ""}
-					className="bg-neutral-50 text-neutral-800 outline-1 outline-neutral-400 placeholder:text-neutral-400 focus:outline-2 focus:outline-neutral-700 focus:placeholder:text-neutral-500"
+					value={`${todo.completed}`}
+					className="rounded-full bg-neutral-50 px-5 py-3 text-xl text-neutral-800 outline-1 outline-neutral-400 transition placeholder:text-neutral-400 focus:outline-2 focus:outline-neutral-700 focus:placeholder:text-neutral-500"
 				/>
 
 				<div className="mt-2 flex justify-end gap-2">

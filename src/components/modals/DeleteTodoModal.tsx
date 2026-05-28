@@ -1,4 +1,6 @@
+import type { ActionDispatch } from "react";
 import type { Todo } from "../../types/types.ts";
+import type { TodosActionState } from "../reducer/todosReducer.ts";
 import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
 
@@ -8,8 +10,8 @@ function DeleteTodoModal({
 	handleDelete,
 }: {
 	todo: Todo | undefined;
+	handleDelete: ActionDispatch<[action: TodosActionState]>;
 	handleCloseModal: () => void;
-	handleDelete: () => void;
 }) {
 	if (!todo) return;
 
@@ -29,7 +31,11 @@ function DeleteTodoModal({
 
 				<Button
 					className="rounded-md bg-orange-300 px-4 py-2 outline-0 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-orange-800"
-					handler={handleDelete}
+					handler={() => {
+						handleDelete({ type: "DELETE", payload: todo });
+
+						handleCloseModal();
+					}}
 				>
 					Delete
 				</Button>

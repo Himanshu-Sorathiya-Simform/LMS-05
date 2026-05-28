@@ -1,15 +1,79 @@
+import { type RefObject, useReducer, useRef, useState } from "react";
+import { data } from "../../data/data.ts";
+import type { Todo } from "../../types/types.ts";
 import Header from "../Header.tsx";
 import ListContainer from "../ListContainer.tsx";
+import CreateTodoModal from "../modals/CreateTodoModal.tsx";
+import DeleteTodoModal from "../modals/DeleteTodoModal.tsx";
+import EditTodoModal from "../modals/EditTodoModal.tsx";
+import { todosReducer } from "../reducer/todosReducer.ts";
+import ModalLayout from "./ModalLayout.tsx";
 
 function AppLayout() {
-	return (
-		<section className="flex h-screen w-screen items-center justify-center bg-white p-6">
-			<div className="flex h-11/12 max-w-3xl flex-col items-center gap-8">
-				<Header />
+	const [todos, dispatch] = useReducer(todosReducer, data);
+	const [modalState, setModalState] = useState<{
+		type: string;
+		data: Todo | undefined;
+	}>({ type: "", data: undefined });
 
-				<ListContainer />
-			</div>
-		</section>
+	const ref: RefObject<HTMLDialogElement | null> = useRef(null);
+
+	function handleShowModal(type: string, data?: Todo) {
+		if (!ref.current) return;
+
+		setModalState({ type, data });
+		ref.current.showModal();
+	}
+
+	function handleCloseModal() {
+		if (!ref.current) return;
+
+		setModalState({ type: "", data: undefined });
+		ref.current.close();
+	}
+
+	console.log(todos);
+
+	return (
+		<>
+			<section className="flex h-screen w-screen items-center justify-center bg-white p-6">
+				<div className="flex h-11/12 max-w-3xl flex-col items-center gap-8">
+					<Header handleShowModal={handleShowModal} />
+
+					<ListContainer
+						todos={todos}
+						handleShowModal={handleShowModal}
+					/>
+				</div>
+			</section>
+
+			<ModalLayout
+				ref={ref}
+				className="m-auto"
+				onClose={handleCloseModal}
+			>
+				{modalState.type === "create" && (
+					<CreateTodoModal
+						handleCreate={dispatch}
+						handleCloseModal={handleCloseModal}
+					/>
+				)}
+				{modalState.type === "edit" && (
+					<EditTodoModal
+						handleEdit={dispatch}
+						handleCloseModal={handleCloseModal}
+						todo={modalState.data}
+					/>
+				)}
+				{modalState.type === "delete" && (
+					<DeleteTodoModal
+						handleDelete={dispatch}
+						handleCloseModal={handleCloseModal}
+						todo={modalState.data}
+					/>
+				)}
+			</ModalLayout>
+		</>
 	);
 }
 

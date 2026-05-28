@@ -1,3 +1,5 @@
+import type { ActionDispatch } from "react";
+import type { TodosActionState } from "../reducer/todosReducer.ts";
 import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
 import Input from "../ui/Input.tsx";
@@ -7,16 +9,23 @@ function CreateTodoModal({
 	handleCreate,
 }: {
 	handleCloseModal: () => void;
-	handleCreate: () => void;
+	handleCreate: ActionDispatch<[action: TodosActionState]>;
 }) {
 	function handleFormSubmit(formdata) {
 		console.log(formdata.get("todo-title"));
 		console.log(formdata.get("todo-description"));
 
-		handleCreate();
-
-		// const title = formdata.get("todo-title");
-		// const description = formdata.get("todo-description");
+		handleCreate({
+			type: "ADD",
+			payload: {
+				id: Math.random(),
+				title: formdata.get("todo-title"),
+				description: formdata.get("todo-description"),
+				createdAt: Date.now(),
+				completed: false,
+			},
+		});
+		handleCloseModal();
 	}
 
 	return (

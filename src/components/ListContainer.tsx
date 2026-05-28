@@ -1,34 +1,13 @@
-import { type RefObject, useRef, useState } from "react";
-import { data } from "../data/data.ts";
 import type { Todo } from "../types/types.ts";
-import ModalLayout from "./layouts/ModalLayout.tsx";
 import ListItem from "./ListItem.tsx";
-import DeleteTodoModal from "./modals/DeleteTodoModal.tsx";
-import EditTodoModal from "./modals/EditTodoModal.tsx";
 
-function ListContainer() {
-	const [todos] = useState(data);
-	const [modalState, setModalState] = useState<{
-		type: string;
-		data: Todo | undefined;
-	}>({ type: "", data: undefined });
-
-	const ref: RefObject<HTMLDialogElement | null> = useRef(null);
-
-	function handleShowModal(type: string, data?: Todo) {
-		if (!ref.current) return;
-
-		setModalState({ type, data });
-		ref.current.showModal();
-	}
-
-	function handleCloseModal() {
-		if (!ref.current) return;
-
-		setModalState({ type: "", data: undefined });
-		ref.current.close();
-	}
-
+function ListContainer({
+	todos,
+	handleShowModal,
+}: {
+	todos: Todo[];
+	handleShowModal: (type: string, data?: Todo) => void;
+}) {
 	return (
 		<main className="flex flex-col gap-2 overflow-hidden">
 			<ul className="flex scrollbar-thin flex-col gap-2 overflow-y-scroll">
@@ -40,31 +19,6 @@ function ListContainer() {
 					/>
 				))}
 			</ul>
-
-			<ModalLayout
-				ref={ref}
-				className="m-auto"
-				onClose={handleCloseModal}
-			>
-				{modalState.type === "delete" && (
-					<DeleteTodoModal
-						handleDelete={() => {
-							console.log(modalState.data);
-						}}
-						handleCloseModal={handleCloseModal}
-						todo={modalState.data}
-					/>
-				)}
-				{modalState.type === "edit" && (
-					<EditTodoModal
-						handleEdit={() => {
-							console.log(modalState.data);
-						}}
-						handleCloseModal={handleCloseModal}
-						todo={modalState.data}
-					/>
-				)}
-			</ModalLayout>
 		</main>
 	);
 }

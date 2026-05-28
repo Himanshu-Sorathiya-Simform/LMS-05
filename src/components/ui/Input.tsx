@@ -1,64 +1,32 @@
-import { useId } from "react";
+import { type InputHTMLAttributes, useId } from "react";
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	name: string;
 	label?: string;
-	type?: string;
-	value?: string | number | boolean;
-	placeholder?: string;
-	className?: string;
 }
 
-function Input({
-	type = "text",
-	name = "",
-	label = "",
-	value = "",
-	className = "",
-	placeholder = "",
-}: InputProps) {
+function Input({ name = "", label = "", ...props }: InputProps) {
 	const id = useId();
 
-	if (type === "checkbox")
+	if (props.type === "checkbox") {
 		return (
 			<input
+				{...props}
+				id={id}
 				name={name}
-				aria-label={label}
-				defaultChecked={typeof value === "boolean" ? value : false}
-				type={type}
-				className={`cursor-pointer ${className}`}
 			/>
 		);
-
-	if (type === "select")
-		return (
-			<div className="flex flex-col gap-1 text-lg">
-				{label && <label htmlFor={id}>{label}</label>}
-
-				<select
-					id={id}
-					name={name}
-					defaultValue={typeof value === "boolean" ? `${value}` : ""}
-					className={`rounded-full px-5 py-3 text-xl transition ${className}`}
-				>
-					<option value="">Select Status</option>
-					<option value="true">Completed</option>
-					<option value="false">Not Completed</option>
-				</select>
-			</div>
-		);
+	}
 
 	return (
 		<div className="flex flex-col gap-1 text-lg">
 			{label && <label htmlFor={id}>{label}</label>}
 
 			<input
+				{...props}
 				id={id}
 				name={name}
-				defaultValue={typeof value !== "boolean" ? value : ""}
-				type={type}
-				className={`rounded-full px-5 py-3 text-xl transition ${className}`}
-				placeholder={placeholder}
+				className={`rounded-full px-5 py-3 text-xl transition ${props.className}`}
 			/>
 		</div>
 	);

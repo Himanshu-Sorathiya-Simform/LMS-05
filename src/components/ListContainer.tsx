@@ -30,7 +30,7 @@ function ListContainer() {
 
 	return (
 		<main className="flex flex-col gap-2 overflow-hidden">
-			<ul className="flex max-h-140 scrollbar-thin flex-col gap-2 overflow-y-scroll">
+			<ul className="flex scrollbar-thin flex-col gap-2 overflow-y-scroll">
 				{todos.map((todo) => (
 					<ListItem
 						key={todo.id}

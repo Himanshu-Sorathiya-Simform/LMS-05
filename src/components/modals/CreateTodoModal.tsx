@@ -13,22 +13,25 @@ interface CreateTodoModalProps {
 function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProps) {
 	const [error, setError] = useState("");
 
-	function handleFormSubmit(formdata) {
-		const title: [string, string] = ["title", formdata.get("todo-title")];
-		const description: [string, string] = [
-			"description",
-			formdata.get("todo-description"),
-		];
+	function handleFormSubmit(e) {
+		e.preventDefault();
 
-		const isValid = validate([title, description]);
+		const formData = new FormData(e.currentTarget);
+		const titleVal = formData.get("todo-title") as string;
+		const descriptionVal = formData.get("todo-description") as string;
+
+		const isValid = validate([
+			["title", titleVal],
+			["description", descriptionVal],
+		]);
 
 		if (isValid === true) {
 			handleCreate({
 				type: "ADD",
 				payload: {
 					id: Math.random(),
-					title: title[1],
-					description: description[1],
+					title: titleVal,
+					description: descriptionVal,
 					createdAt: Date.now(),
 					completed: false,
 				},
@@ -44,7 +47,7 @@ function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProp
 			<p className="text-xl">Create new todo task</p>
 
 			<form
-				action={handleFormSubmit}
+				onSubmit={handleFormSubmit}
 				className="flex flex-col gap-3"
 			>
 				<p className="text-red-600">{error}</p>

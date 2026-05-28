@@ -18,29 +18,33 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 
 	if (!todo) return;
 
-	function handleFormSubmit(formdata) {
+	function handleFormSubmit(e) {
+		e.preventDefault();
+
 		if (!todo) return;
 
-		const title: [string, string] = ["title", formdata.get("todo-title")];
-		const description: [string, string] = [
-			"description",
-			formdata.get("todo-description"),
-		];
-		const completed: [string, boolean] = [
-			"completed",
-			formdata.get("todo-completed") === "true" ? true : false,
-		];
+		const formData = new FormData(e.currentTarget);
+		const titleVal = formData.get("todo-title") as string;
+		const descriptionVal = formData.get("todo-description") as string;
+		const completedVal = (
+			formData.get("todo-completed") === "true" ?
+				true
+			:	false) as boolean;
 
-		const isValid = validate([title, description, completed]);
+		const isValid = validate([
+			["title", titleVal],
+			["description", descriptionVal],
+			["completed", completedVal],
+		]);
 
 		if (isValid === true) {
 			handleEdit({
 				type: "UPDATE",
 				payload: {
 					...todo,
-					title: title[1],
-					description: description[1],
-					completed: completed[1],
+					title: titleVal,
+					description: descriptionVal,
+					completed: completedVal,
 				},
 			});
 			handleCloseModal();
@@ -54,7 +58,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 			<p className="text-xl">Edit "{todo.title}" task</p>
 
 			<form
-				action={handleFormSubmit}
+				onSubmit={handleFormSubmit}
 				className="flex flex-col gap-4"
 			>
 				<p className="text-red-600">{error}</p>

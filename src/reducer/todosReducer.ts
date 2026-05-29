@@ -38,4 +38,4 @@ function todosReducer(todos: Todo[], action: TodosActionState) {
 	}
 }
 
-export { todosReducer, type TodosActionState };
+export { type TodosActionState, todosReducer };

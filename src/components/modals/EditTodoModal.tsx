@@ -68,6 +68,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 					label="Task Title"
 					defaultValue={todo.title}
 					placeholder="Enter task title here..."
+					autoFocus={true}
 					className="bg-neutral-50 text-neutral-800 outline-1 outline-neutral-400 placeholder:text-neutral-400 focus:outline-2 focus:outline-neutral-700 focus:placeholder:text-neutral-500"
 				/>
 

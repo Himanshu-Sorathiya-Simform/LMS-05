@@ -1,6 +1,14 @@
-import { type RefObject, useEffect, useReducer, useRef, useState } from "react";
+import {
+	type RefObject,
+	useCallback,
+	useEffect,
+	useReducer,
+	useRef,
+	useState,
+} from "react";
 import Header from "../components/Header.tsx";
 import ListContainer from "../components/ListContainer.tsx";
+import ListItem from "../components/ListItem.tsx";
 import CreateTodoModal from "../components/modals/CreateTodoModal.tsx";
 import DeleteTodoModal from "../components/modals/DeleteTodoModal.tsx";
 import EditTodoModal from "../components/modals/EditTodoModal.tsx";
@@ -22,19 +30,19 @@ function AppLayout() {
 		setLocalStorage("todos", todos);
 	}, [todos]);
 
-	function handleShowModal(type: string, data?: Todo) {
+	const handleShowModal = useCallback((type: string, data?: Todo) => {
 		if (!ref.current) return;
 
 		setModalState({ type, data });
 		ref.current.showModal();
-	}
+	}, []);
 
-	function handleCloseModal() {
+	const handleCloseModal = useCallback(() => {
 		if (!ref.current) return;
 
 		setModalState({ type: "", data: undefined });
 		ref.current.close();
-	}
+	}, []);
 
 	return (
 		<>
@@ -42,11 +50,16 @@ function AppLayout() {
 				<div className="flex h-11/12 w-2xl max-w-full flex-col items-center gap-8">
 					<Header handleShowModal={handleShowModal} />
 
-					<ListContainer
-						todos={todos}
-						handleShowModal={handleShowModal}
-						handleEdit={dispatch}
-					/>
+					<ListContainer>
+						{todos.map((todo) => (
+							<ListItem
+								key={todo.id}
+								todo={todo}
+								handleShowModal={handleShowModal}
+								handleEdit={dispatch}
+							/>
+						))}
+					</ListContainer>
 				</div>
 			</section>
 

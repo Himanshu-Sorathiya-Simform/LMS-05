@@ -1,4 +1,4 @@
-import { type ActionDispatch } from "react";
+import { type ActionDispatch, memo } from "react";
 import type { TodosActionState } from "../reducer/todosReducer.ts";
 import type { Todo } from "../types/types.ts";
 import Button from "./ui/Button.tsx";
@@ -11,7 +11,11 @@ interface ListItemProps {
 	handleEdit: ActionDispatch<[action: TodosActionState]>;
 }
 
-function ListItem({ todo, handleShowModal, handleEdit }: ListItemProps) {
+const ListItem = memo(function ListItem({
+	todo,
+	handleShowModal,
+	handleEdit,
+}: ListItemProps) {
 	return (
 		<li className="flex items-start gap-3 rounded-md border-gray-500 px-2 py-2">
 			<Input
@@ -66,6 +70,6 @@ function ListItem({ todo, handleShowModal, handleEdit }: ListItemProps) {
 			</Button>
 		</li>
 	);
-}
+});
 
 export default ListItem;

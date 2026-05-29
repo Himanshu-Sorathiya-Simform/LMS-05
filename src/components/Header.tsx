@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { Todo } from "../types/types.ts";
 import Today from "./Today.tsx";
 import Button from "./ui/Button.tsx";
@@ -7,7 +8,7 @@ interface HeaderProps {
 	handleShowModal: (type: string, data?: Todo) => void;
 }
 
-function Header({ handleShowModal }: HeaderProps) {
+const Header = memo(function Header({ handleShowModal }: HeaderProps) {
 	return (
 		<header className="flex flex-col items-start gap-7 self-start p-2">
 			<h1 className="font-sans text-3xl font-semibold">To-Do</h1>
@@ -29,6 +30,6 @@ function Header({ handleShowModal }: HeaderProps) {
 			</div>
 		</header>
 	);
-}
+});
 
 export default Header;

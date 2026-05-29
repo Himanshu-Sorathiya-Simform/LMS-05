@@ -18,7 +18,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 
 	if (!todo) return;
 
-	function handleFormSubmit(e) {
+	function handleFormSubmit(e: React.SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
 
 		if (!todo) return;

@@ -13,7 +13,7 @@ interface CreateTodoModalProps {
 function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProps) {
 	const [error, setError] = useState("");
 
-	function handleFormSubmit(e) {
+	function handleFormSubmit(e: React.SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
 
 		const formData = new FormData(e.currentTarget);

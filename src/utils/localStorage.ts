@@ -1,6 +1,6 @@
 import { data } from "../data/data.ts";
 
-function setLocalStorage(key: string, value) {
+function setLocalStorage(key: string, value: unknown) {
 	localStorage.setItem(key, JSON.stringify(value));
 }
 

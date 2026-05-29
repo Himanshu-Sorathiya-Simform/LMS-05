@@ -20,7 +20,7 @@ function Icon({
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
 		>
-			<use href={`/src/assets/icons/ui_icons_sprite.svg#${id}`}></use>
+			<use href={`/icons/ui_icons_sprite.svg#${id}`}></use>
 		</svg>
 	);
 }

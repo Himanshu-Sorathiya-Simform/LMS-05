@@ -1,48 +1,23 @@
-import {
-	type RefObject,
-	useCallback,
-	useEffect,
-	useReducer,
-	useRef,
-	useState,
-} from "react";
+import { useEffect, useReducer } from "react";
 import Header from "../components/Header.tsx";
 import ListContainer from "../components/ListContainer.tsx";
 import ListItem from "../components/ListItem.tsx";
 import CreateTodoModal from "../components/modals/CreateTodoModal.tsx";
 import DeleteTodoModal from "../components/modals/DeleteTodoModal.tsx";
 import EditTodoModal from "../components/modals/EditTodoModal.tsx";
+import { useModal } from "../hooks/useModal.ts";
 import { todosReducer } from "../reducer/todosReducer.ts";
-import type { Todo } from "../types/types.ts";
 import { getLocalStorage, setLocalStorage } from "../utils/localStorage.ts";
 import ModalLayout from "./ModalLayout.tsx";
 
 function AppLayout() {
 	const [todos, dispatch] = useReducer(todosReducer, "todos", getLocalStorage);
-	const [modalState, setModalState] = useState<{
-		type: string;
-		data: Todo | undefined;
-	}>({ type: "", data: undefined });
 
-	const ref: RefObject<HTMLDialogElement | null> = useRef(null);
+	const { ref, modalState, handleShowModal, handleCloseModal } = useModal();
 
 	useEffect(() => {
 		setLocalStorage("todos", todos);
 	}, [todos]);
-
-	const handleShowModal = useCallback((type: string, data?: Todo) => {
-		if (!ref.current) return;
-
-		setModalState({ type, data });
-		ref.current.showModal();
-	}, []);
-
-	const handleCloseModal = useCallback(() => {
-		if (!ref.current) return;
-
-		setModalState({ type: "", data: undefined });
-		ref.current.close();
-	}, []);
 
 	return (
 		<>

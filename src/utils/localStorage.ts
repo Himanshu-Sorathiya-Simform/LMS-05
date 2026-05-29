@@ -4,12 +4,13 @@ function setLocalStorage(key: string, value) {
 	localStorage.setItem(key, JSON.stringify(value));
 }
 
-function getLocalStorage<T>(key: string): T {
+function getLocalStorage(key: string) {
 	const val = localStorage.getItem(key);
 
-	if (!val) {
+	if (!val || !JSON.parse(val).length) {
 		setLocalStorage(key, data);
-		return data as T;
+
+		return data;
 	}
 
 	return JSON.parse(val);

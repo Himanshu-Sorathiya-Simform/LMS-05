@@ -1,6 +1,6 @@
 import type { ActionDispatch } from "react";
+import type { TodosActionState } from "../../reducer/todosReducer.ts";
 import type { Todo } from "../../types/types.ts";
-import type { TodosActionState } from "../reducer/todosReducer.ts";
 import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
 

@@ -1,12 +1,12 @@
 import { type RefObject, useReducer, useRef, useState } from "react";
-import { data } from "../../data/data.ts";
-import type { Todo } from "../../types/types.ts";
-import Header from "../Header.tsx";
-import ListContainer from "../ListContainer.tsx";
-import CreateTodoModal from "../modals/CreateTodoModal.tsx";
-import DeleteTodoModal from "../modals/DeleteTodoModal.tsx";
-import EditTodoModal from "../modals/EditTodoModal.tsx";
+import Header from "../components/Header.tsx";
+import ListContainer from "../components/ListContainer.tsx";
+import CreateTodoModal from "../components/modals/CreateTodoModal.tsx";
+import DeleteTodoModal from "../components/modals/DeleteTodoModal.tsx";
+import EditTodoModal from "../components/modals/EditTodoModal.tsx";
+import { data } from "../data/data.ts";
 import { todosReducer } from "../reducer/todosReducer.ts";
+import type { Todo } from "../types/types.ts";
 import ModalLayout from "./ModalLayout.tsx";
 
 function AppLayout() {

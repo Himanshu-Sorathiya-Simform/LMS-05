@@ -1,4 +1,4 @@
-import type { Todo } from "../../types/types.ts";
+import type { Todo } from "../types/types.ts";
 
 interface TodosActionState {
 	type: "ADD" | "UPDATE" | "DELETE";
@@ -38,4 +38,4 @@ function todosReducer(todos: Todo[], action: TodosActionState) {
 	}
 }
 
-export { type TodosActionState, todosReducer };
+export { todosReducer, type TodosActionState };

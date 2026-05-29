@@ -1,7 +1,7 @@
 import type { ActionDispatch } from "react";
+import type { TodosActionState } from "../reducer/todosReducer.ts";
 import type { Todo } from "../types/types.ts";
 import ListItem from "./ListItem.tsx";
-import type { TodosActionState } from "./reducer/todosReducer.ts";
 
 interface ListContainerProps {
 	todos: Todo[];

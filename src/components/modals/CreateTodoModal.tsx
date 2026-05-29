@@ -1,6 +1,6 @@
 import { type ActionDispatch, useState } from "react";
+import type { TodosActionState } from "../../reducer/todosReducer.ts";
 import { validate } from "../../utils/validateTodoFormResponse.ts";
-import type { TodosActionState } from "../reducer/todosReducer.ts";
 import Button from "../ui/Button.tsx";
 import Icon from "../ui/Icon.tsx";
 import Input from "../ui/Input.tsx";

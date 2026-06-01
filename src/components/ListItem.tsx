@@ -17,8 +17,13 @@ const ListItem = memo(function ListItem({
 	handleEdit,
 }: ListItemProps) {
 	return (
-		<li className="flex items-start gap-3 rounded-md border-gray-500 px-2 py-2">
+		<li className="flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3 hover:bg-gray-50">
 			<Input
+				id={`${todo.title}_task_checkbox`}
+				type="checkbox"
+				label={`Checkbox for ${todo.title}`}
+				aria-label={`Checkbox for ${todo.title}`}
+				name="status-toggle"
 				checked={todo.completed}
 				onChange={() => {
 					handleEdit({
@@ -26,15 +31,12 @@ const ListItem = memo(function ListItem({
 						payload: { ...todo, completed: !todo.completed },
 					});
 				}}
-				name="status-toggle"
-				type="checkbox"
-				label={`Checkbox for ${todo.title}`}
 				className="mt-2 scale-150 cursor-pointer rounded-lg accent-blue-600 focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-gray-500"
 			/>
 
 			<div className="flex flex-1 flex-col gap-1">
 				<label
-					htmlFor={`${todo.id}_task_checkbox`}
+					htmlFor={`${todo.title}_task_checkbox`}
 					className="max-w-132 truncate text-lg"
 				>
 					{todo.title}

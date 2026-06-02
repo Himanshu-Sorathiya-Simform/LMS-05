@@ -17,7 +17,7 @@ const ListItem = memo(function ListItem({
 	handleEdit,
 }: ListItemProps) {
 	return (
-		<li className="flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3 hover:bg-gray-50">
+		<li className="group flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3 hover:bg-gray-50">
 			<Input
 				id={`${todo.title}_task_checkbox`}
 				type="checkbox"
@@ -50,7 +50,7 @@ const ListItem = memo(function ListItem({
 			</div>
 
 			<Button
-				className="mt-2 cursor-pointer rounded-lg p-1.5 duration-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
+				className="mt-2 cursor-pointer rounded-lg p-1.5 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
 				label="Edit Todo"
 				handler={() => handleShowModal("edit", todo)}
 			>
@@ -61,7 +61,7 @@ const ListItem = memo(function ListItem({
 			</Button>
 
 			<Button
-				className="mt-2 cursor-pointer rounded-lg p-1.5 duration-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
+				className="mt-2 cursor-pointer rounded-lg p-1.5 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
 				label="Delete Todo"
 				handler={() => handleShowModal("delete", todo)}
 			>

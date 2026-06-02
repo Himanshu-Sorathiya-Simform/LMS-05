@@ -16,6 +16,14 @@ const ListItem = memo(function ListItem({
 	handleShowModal,
 	handleEdit,
 }: ListItemProps) {
+	function showEditModal() {
+		handleShowModal("edit", todo);
+	}
+
+	function showDeleteModal() {
+		handleShowModal("delete", todo);
+	}
+
 	return (
 		<li className="group flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3 hover:bg-gray-50">
 			<Input
@@ -52,7 +60,7 @@ const ListItem = memo(function ListItem({
 			<Button
 				className="mt-2 cursor-pointer rounded-lg p-1.5 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
 				label="Edit Todo"
-				handler={() => handleShowModal("edit", todo)}
+				onClick={showEditModal}
 			>
 				<Icon
 					id="edit"
@@ -63,7 +71,7 @@ const ListItem = memo(function ListItem({
 			<Button
 				className="mt-2 cursor-pointer rounded-lg p-1.5 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
 				label="Delete Todo"
-				handler={() => handleShowModal("delete", todo)}
+				onClick={showDeleteModal}
 			>
 				<Icon
 					id="delete"

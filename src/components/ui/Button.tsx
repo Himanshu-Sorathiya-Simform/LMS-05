@@ -2,14 +2,14 @@ import type { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	label?: string;
-	handler?: () => void;
+	onClick?: () => void;
 	className?: string;
 	children: React.ReactNode;
 }
 
 function Button({
 	label = "",
-	handler = () => {},
+	onClick = () => {},
 	className = "",
 	children,
 	...props
@@ -18,7 +18,7 @@ function Button({
 		<button
 			{...props}
 			className={`flex cursor-pointer items-center justify-center transition ${className}`}
-			onClick={handler}
+			onClick={onClick}
 			aria-label={label}
 		>
 			{children}

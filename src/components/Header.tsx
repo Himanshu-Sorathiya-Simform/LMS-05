@@ -9,6 +9,10 @@ interface HeaderProps {
 }
 
 const Header = memo(function Header({ handleShowModal }: HeaderProps) {
+	function showCreateModal() {
+		handleShowModal("create");
+	}
+
 	return (
 		<header className="flex flex-col items-start gap-7 self-start p-2">
 			<h1 className="font-sans text-3xl font-semibold">To-Do</h1>
@@ -18,7 +22,7 @@ const Header = memo(function Header({ handleShowModal }: HeaderProps) {
 			<div className="flex gap-2">
 				<Button
 					className="gap-1 rounded-full bg-blue-600 px-4 py-2 font-semibold text-white duration-100 hover:bg-blue-700 focus:bg-blue-700 focus:outline-1 focus:outline-blue-700"
-					handler={() => handleShowModal("create")}
+					onClick={showCreateModal}
 				>
 					<Icon
 						id="create"

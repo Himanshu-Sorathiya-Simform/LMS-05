@@ -91,7 +91,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 				<div className="mt-2 flex justify-end gap-2">
 					<Button
 						className="rounded-md bg-stone-300 px-4 py-2 outline-0 duration-75 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-stone-800"
-						handler={handleCloseModal}
+						onClick={handleCloseModal}
 					>
 						Cancel
 					</Button>
@@ -104,7 +104,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 
 			<Button
 				className="absolute top-0 right-0 rounded-full p-1 outline-0 duration-75 hover:bg-stone-200 focus:bg-stone-200 focus-visible:outline-1 focus-visible:outline-stone-800"
-				handler={handleCloseModal}
+				onClick={handleCloseModal}
 			>
 				<Icon
 					id="close"

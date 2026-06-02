@@ -17,10 +17,13 @@ function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProp
 		e.preventDefault();
 
 		const formData = new FormData(e.currentTarget);
-		const titleVal = formData.get("todo-title") as string;
-		const descriptionVal = formData.get("todo-description") as string;
+		const titleVal = formData.get("todo-title");
+		const descriptionVal = formData.get("todo-description");
 
-		const isValid = validate([
+		if (typeof titleVal !== "string" || typeof descriptionVal !== "string")
+			return;
+
+		const { isValid, error } = validate([
 			["title", titleVal],
 			["description", descriptionVal],
 		]);
@@ -38,7 +41,7 @@ function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProp
 			});
 			handleCloseModal();
 		} else {
-			setError(isValid ?? "");
+			setError(error);
 		}
 	}
 

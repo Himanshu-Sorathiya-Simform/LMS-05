@@ -24,14 +24,15 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 		if (!todo) return;
 
 		const formData = new FormData(e.currentTarget);
-		const titleVal = formData.get("todo-title") as string;
-		const descriptionVal = formData.get("todo-description") as string;
-		const completedVal = (
-			formData.get("todo-completed") === "true" ?
-				true
-			:	false) as boolean;
+		const titleVal = formData.get("todo-title");
+		const descriptionVal = formData.get("todo-description");
+		const completedVal =
+			formData.get("todo-completed") === "true" ? true : false;
 
-		const isValid = validate([
+		if (typeof titleVal !== "string" || typeof descriptionVal !== "string")
+			return;
+
+		const { isValid, error } = validate([
 			["title", titleVal],
 			["description", descriptionVal],
 			["completed", completedVal],
@@ -49,7 +50,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 			});
 			handleCloseModal();
 		} else {
-			setError(isValid ?? "");
+			setError(error);
 		}
 	}
 

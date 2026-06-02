@@ -10,32 +10,44 @@ function validate(fields: [string, string | boolean | number][]) {
 					.validate(value);
 
 				if (!ans.isValid) {
-					return ans.errors[0]?.message;
+					return {
+						isValid: false,
+						error: ans.errors[0]?.message ?? "Invalid Value",
+					};
 				}
 
-				return true;
+				return { isValid: true, error: "" };
 			}
 
 			case "description": {
-				return true;
+				return { isValid: true, error: "" };
 			}
 
 			case "completed": {
 				const ans = v.boolean().validate(value);
 
 				if (!ans.isValid) {
-					return ans.errors[0]?.message;
+					return {
+						isValid: false,
+						error: ans.errors[0]?.message ?? "Invalid Value",
+					};
 				}
 
-				return true;
+				return { isValid: true, error: "" };
 			}
 
 			default:
-				return `Unexpected field : ${field}`;
+				return {
+					isValid: false,
+					error: `Unexpected field : ${field}`,
+				};
 		}
 	}
 
-	return "Unexpected";
+	return {
+		isValid: false,
+		error: `Unexpected Error`,
+	};
 }
 
 export { validate };

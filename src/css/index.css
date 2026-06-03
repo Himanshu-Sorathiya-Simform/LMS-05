@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+:root {
+	--modal-backdrop-blur: 3px;
+}
+
+html {
+	font-family: "Poppins", sans-serif;
+	scrollbar-gutter: stable;
+}

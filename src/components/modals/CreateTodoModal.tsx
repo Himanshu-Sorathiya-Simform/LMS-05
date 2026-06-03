@@ -37,6 +37,7 @@ function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProp
 					description: descriptionVal,
 					createdAt: Date.now(),
 					completed: false,
+					completedAt: -1,
 				},
 			});
 			handleCloseModal();

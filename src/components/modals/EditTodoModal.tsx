@@ -46,6 +46,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 					title: titleVal,
 					description: descriptionVal,
 					completed: completedVal,
+					completedAt: completedVal === true ? Date.now() : -1,
 				},
 			});
 			handleCloseModal();

@@ -1,11 +1,10 @@
-import { type ActionDispatch, memo, useState } from "react";
+import { type ActionDispatch, memo } from "react";
 import type { TodosActionState } from "../reducer/todosReducer.ts";
 import type { Todo } from "../types/types.ts";
 import { formatDate } from "../utils/dateAndTime.ts";
 import Button from "./ui/Button.tsx";
 import Icon from "./ui/Icon.tsx";
 import Input from "./ui/Input.tsx";
-import Tooltip from "./ui/Tootip.tsx";
 
 interface ListItemProps {
 	todo: Todo;
@@ -18,8 +17,6 @@ const ListItem = memo(function ListItem({
 	handleShowModal,
 	handleEdit,
 }: ListItemProps) {
-	const [visible, setVisible] = useState(false);
-
 	function showEditModal() {
 		handleShowModal("edit", todo);
 	}
@@ -29,35 +26,10 @@ const ListItem = memo(function ListItem({
 	}
 
 	return (
-		<li
-			className="group relative z-10 flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3 hover:bg-gray-50"
-			onMouseEnter={() => setVisible(true)}
-			onMouseLeave={() => setVisible(false)}
-		>
-			{visible && (
-				<Tooltip
-					className="text-text z-10 grid w-9/12 grid-cols-[auto_1fr] gap-1 rounded-md bg-gray-100 px-3 py-2"
-					onMouseEnter={() => setVisible(false)}
-				>
-					<span>Title: </span>
-					<p className="font-medium">{todo.title}</p>
-
-					{todo.description && (
-						<>
-							<span>Description: </span>
-							<p className="font-medium">{todo.description}</p>
-						</>
-					)}
-
-					<span>Created At: </span>
-					<p className="font-medium">{formatDate(todo.createdAt)}</p>
-
-					<span>Completed: </span>
-					<p className="font-medium">
-						{todo.completed === true ? "Yes" : "No"}
-					</p>
-				</Tooltip>
-			)}
+		<li className="group relative flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3 hover:bg-gray-50">
+			<span className="absolute top-1/2 -left-34 -translate-y-1/2 text-gray-600 opacity-0 transition-all duration-100 group-hover:opacity-100">
+				{formatDate(todo.createdAt)}
+			</span>
 
 			<Input
 				id={`${todo.title}_task_checkbox`}

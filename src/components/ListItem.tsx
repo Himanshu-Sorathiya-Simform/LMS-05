@@ -27,7 +27,7 @@ const ListItem = memo(function ListItem({
 
 	return (
 		<li className="group relative flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3 hover:bg-gray-50">
-			<span className="absolute top-1/2 -left-34 -translate-y-1/2 text-gray-600 opacity-0 transition-all duration-100 group-hover:opacity-100">
+			<span className="absolute top-1/2 -left-42 -translate-y-1/2 text-gray-600 opacity-0 transition-all duration-100 group-hover:opacity-100">
 				{formatDate(todo.createdAt)}
 			</span>
 
@@ -41,7 +41,11 @@ const ListItem = memo(function ListItem({
 				onChange={() => {
 					handleEdit({
 						type: "UPDATE",
-						payload: { ...todo, completed: !todo.completed },
+						payload: {
+							...todo,
+							completed: !todo.completed,
+							completedAt: todo.completed ? -1 : Date.now(),
+						},
 					});
 				}}
 				className="mt-2 scale-150 cursor-pointer rounded-lg accent-blue-600 focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-gray-500"

@@ -88,6 +88,7 @@ function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProp
 			<Button
 				className="absolute top-0 right-0 rounded-full p-1 outline-0 duration-75 hover:bg-stone-200 focus:bg-stone-200 focus-visible:outline-1 focus-visible:outline-stone-800"
 				onClick={handleCloseModal}
+				type="submit"
 			>
 				<Icon
 					id="close"

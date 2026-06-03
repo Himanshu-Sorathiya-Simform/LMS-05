@@ -97,7 +97,10 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 						Cancel
 					</Button>
 
-					<Button className="rounded-md bg-orange-300 px-4 py-2 outline-0 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-orange-800">
+					<Button
+						type="submit"
+						className="rounded-md bg-orange-300 px-4 py-2 outline-0 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-orange-800"
+					>
 						Update
 					</Button>
 				</div>

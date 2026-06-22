@@ -40,8 +40,8 @@ const ListItem = memo(function ListItem({
 					id={`${todo.title}_task_checkbox`}
 					name="status-toggle"
 					checked={todo.completed}
-					className="scale-110 cursor-pointer border-0 ring-0 focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-gray-500 data-checked:bg-blue-600"
-					onChange={() => {
+					className="scale-110 cursor-pointer border-0 ring-1 focus-visible:ring-1 focus-visible:ring-gray-500 focus-visible:ring-offset-1 data-checked:bg-blue-600"
+					onCheckedChange={() => {
 						handleEdit({
 							type: "UPDATE",
 							payload: {
@@ -70,24 +70,24 @@ const ListItem = memo(function ListItem({
 			</Field>
 
 			<Button
-				className="mt-2 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
+				className="mt-1 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
 				aria-label="Edit Todo"
 				onClick={showEditModal}
 			>
 				<Icon
 					id="edit"
-					className="size-6 text-gray-500"
+					className="size-5 text-gray-500"
 				></Icon>
 			</Button>
 
 			<Button
-				className="mt-2 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
+				className="mt-1 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
 				aria-label="Delete Todo"
 				onClick={showDeleteModal}
 			>
 				<Icon
 					id="delete"
-					className="size-6 stroke-1 text-red-500"
+					className="size-5 stroke-1 text-red-500"
 				></Icon>
 			</Button>
 		</li>

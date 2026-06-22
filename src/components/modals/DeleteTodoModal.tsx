@@ -33,14 +33,14 @@ function DeleteTodoModal({
 
 			<div className="flex justify-end gap-2">
 				<Button
-					className="box-content cursor-pointer rounded-md bg-stone-300 px-4 py-1 text-black outline-0 duration-75 hover:bg-stone-300 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-stone-800"
+					className="box-content cursor-pointer rounded-md bg-stone-300 px-4 py-1 text-black ring-0 duration-75 hover:bg-stone-300 hover:brightness-90 focus-visible:ring-2 focus-visible:ring-stone-800 focus-visible:brightness-90"
 					onClick={handleCloseModal}
 				>
 					Cancel
 				</Button>
 
 				<Button
-					className="box-content cursor-pointer rounded-md bg-orange-300 px-4 py-1 text-black outline-0 hover:bg-orange-300 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-orange-800"
+					className="box-content cursor-pointer rounded-md bg-orange-300 px-4 py-1 text-black ring-0 hover:bg-orange-300 hover:brightness-90 focus-visible:ring-2 focus-visible:ring-orange-800 focus-visible:brightness-90"
 					onClick={handleTodoModalDelete}
 				>
 					Delete
@@ -48,7 +48,7 @@ function DeleteTodoModal({
 			</div>
 
 			<Button
-				className="absolute top-0 right-0 box-content cursor-pointer rounded-full bg-transparent py-1.5 text-lg text-black outline-0 duration-75 hover:bg-stone-200 focus:bg-stone-200 focus-visible:outline-1 focus-visible:outline-stone-800"
+				className="absolute top-0 right-0 box-content cursor-pointer rounded-full bg-transparent py-1.5 text-lg text-black ring-0 duration-75 hover:bg-stone-200 focus-visible:bg-stone-200 focus-visible:ring-1 focus-visible:ring-stone-800"
 				onClick={handleCloseModal}
 			>
 				<Icon

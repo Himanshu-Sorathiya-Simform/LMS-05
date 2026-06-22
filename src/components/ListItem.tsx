@@ -3,8 +3,9 @@ import type { TodosActionState } from "../reducer/todosReducer.ts";
 import type { Todo } from "../types/types.ts";
 import { formatDate } from "../utils/dateAndTime.ts";
 import { Button } from "./ui/button.tsx";
+import { Checkbox } from "./ui/checkbox.tsx";
+import { Field, FieldContent, FieldDescription, FieldLabel } from "./ui/field.tsx";
 import Icon from "./ui/Icon.tsx";
-import Input from "./ui/Input.tsx";
 
 interface ListItemProps {
 	todo: Todo;
@@ -31,40 +32,42 @@ const ListItem = memo(function ListItem({
 				{formatDate(todo.createdAt)}
 			</span>
 
-			<Input
-				id={`${todo.title}_task_checkbox`}
-				type="checkbox"
-				label={`Checkbox for ${todo.title}`}
-				aria-label={`Checkbox for ${todo.title}`}
-				name="status-toggle"
-				checked={todo.completed}
-				onChange={() => {
-					handleEdit({
-						type: "UPDATE",
-						payload: {
-							...todo,
-							completed: !todo.completed,
-							completedAt: todo.completed ? -1 : Date.now(),
-						},
-					});
-				}}
-				className="mt-2 scale-150 cursor-pointer rounded-lg accent-blue-600 focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-gray-500"
-			/>
+			<Field
+				orientation="horizontal"
+				className="flex items-center *:[[role=checkbox]]:mt-1.5!"
+			>
+				<Checkbox
+					id={`${todo.title}_task_checkbox`}
+					name="status-toggle"
+					checked={todo.completed}
+					className="scale-110 cursor-pointer border-0 ring-0 focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-gray-500 data-checked:bg-blue-600"
+					onChange={() => {
+						handleEdit({
+							type: "UPDATE",
+							payload: {
+								...todo,
+								completed: !todo.completed,
+								completedAt: todo.completed ? -1 : Date.now(),
+							},
+						});
+					}}
+				/>
 
-			<div className="flex flex-1 flex-col gap-1">
-				<label
-					htmlFor={`${todo.title}_task_checkbox`}
-					className="max-w-132 truncate text-lg"
-				>
-					{todo.title}
-				</label>
+				<FieldContent>
+					<FieldLabel
+						htmlFor={`${todo.title}_task_checkbox`}
+						className="max-w-132 truncate text-lg"
+					>
+						{todo.title}
+					</FieldLabel>
 
-				{todo.description && (
-					<p className="max-w-132 truncate font-light text-gray-600">
-						{todo.description}
-					</p>
-				)}
-			</div>
+					{todo.description && (
+						<FieldDescription className="max-w-132 truncate font-light text-gray-600">
+							{todo.description}
+						</FieldDescription>
+					)}
+				</FieldContent>
+			</Field>
 
 			<Button
 				className="mt-2 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"

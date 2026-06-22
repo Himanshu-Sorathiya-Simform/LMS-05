@@ -21,7 +21,7 @@ function AppLayout() {
 
 	return (
 		<>
-			<section className="flex min-h-screen w-full scrollbar-gutter-both items-center justify-center bg-white px-6 pb-6">
+			<section className="flex min-h-screen w-full scrollbar-gutter-both justify-center bg-white px-6 pb-6">
 				<div className="flex h-full w-2xl max-w-full flex-col items-center gap-8">
 					<Header handleShowModal={handleShowModal} />
 

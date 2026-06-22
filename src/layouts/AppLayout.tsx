@@ -43,7 +43,7 @@ function AppLayout() {
 				</div>
 
 				<Button
-					className="absolute bottom-5 left-5 cursor-pointer"
+					className="fixed bottom-5 left-5 cursor-pointer"
 					onClick={toggleTheme}
 				>
 					Toggle to {theme === "light" ? "Dark" : "Light"}

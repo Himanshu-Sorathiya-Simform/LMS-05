@@ -1,7 +1,12 @@
+import ThemeProvider from "./context/ThemeContext.tsx";
 import AppLayout from "./layouts/AppLayout.tsx";
 
 function App() {
-	return <AppLayout />;
+	return (
+		<ThemeProvider>
+			<AppLayout />
+		</ThemeProvider>
+	);
 }
 
 export default App;

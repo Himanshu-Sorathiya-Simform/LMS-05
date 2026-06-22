@@ -27,8 +27,8 @@ const ListItem = memo(function ListItem({
 	}
 
 	return (
-		<li className="group relative flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3 hover:bg-gray-50">
-			<span className="absolute top-1/2 -left-42 -translate-y-1/2 text-gray-600 opacity-0 transition-all duration-100 group-hover:opacity-100">
+		<li className="group hover:bg-input relative flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3">
+			<span className="absolute top-1/2 -left-44 -translate-y-1/2 text-gray-600 opacity-0 transition-all duration-100 group-hover:opacity-100">
 				{formatDate(todo.createdAt)}
 			</span>
 
@@ -62,7 +62,7 @@ const ListItem = memo(function ListItem({
 					</FieldLabel>
 
 					{todo.description && (
-						<FieldDescription className="max-w-132 truncate font-light text-gray-600">
+						<FieldDescription className="text-muted-foreground max-w-132 truncate font-light">
 							{todo.description}
 						</FieldDescription>
 					)}
@@ -70,7 +70,7 @@ const ListItem = memo(function ListItem({
 			</Field>
 
 			<Button
-				className="mt-1 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
+				className="hover:bg-chart-1 text-foreground mt-1 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 focus-visible:outline-1 focus-visible:outline-gray-500"
 				aria-label="Edit Todo"
 				onClick={showEditModal}
 			>
@@ -81,7 +81,7 @@ const ListItem = memo(function ListItem({
 			</Button>
 
 			<Button
-				className="mt-1 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
+				className="hover:bg-chart-1 mt-1 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 focus-visible:outline-1 focus-visible:outline-gray-500"
 				aria-label="Delete Todo"
 				onClick={showDeleteModal}
 			>

@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button.tsx";
+import { useTheme } from "@/context/ThemeContext.tsx";
 import { useEffect, useReducer } from "react";
 import Header from "../components/Header.tsx";
 import ListContainer from "../components/ListContainer.tsx";
@@ -13,6 +15,7 @@ import ModalLayout from "./ModalLayout.tsx";
 function AppLayout() {
 	const [todos, dispatch] = useReducer(todosReducer, "todos", getLocalStorage);
 
+	const { theme, toggleTheme } = useTheme();
 	const { ref, modalState, handleShowModal, handleCloseModal } = useModal();
 
 	useEffect(() => {
@@ -21,7 +24,9 @@ function AppLayout() {
 
 	return (
 		<>
-			<section className="flex min-h-screen w-full scrollbar-gutter-both justify-center bg-white px-6 pb-6">
+			<section
+				className={`${theme === "dark" ? "dark" : ""} bg-secondary text-secondary-foreground relative flex min-h-screen w-full scrollbar-gutter-both justify-center px-6 pb-6 transition-colors`}
+			>
 				<div className="flex h-full w-2xl max-w-full flex-col items-center gap-8">
 					<Header handleShowModal={handleShowModal} />
 
@@ -36,6 +41,13 @@ function AppLayout() {
 						))}
 					</ListContainer>
 				</div>
+
+				<Button
+					className="absolute bottom-5 left-5 cursor-pointer"
+					onClick={toggleTheme}
+				>
+					Toggle to {theme === "light" ? "Dark" : "Light"}
+				</Button>
 			</section>
 
 			<ModalLayout

@@ -14,7 +14,7 @@ const Header = memo(function Header({ handleShowModal }: HeaderProps) {
 	}
 
 	return (
-		<header className="sticky top-0 z-10 mt-32 flex w-full flex-col items-start gap-7 self-start bg-white px-2 pb-8">
+		<header className="bg-secondary text-secondary-foreground sticky top-0 z-10 mt-32 flex w-full flex-col items-start gap-7 self-start px-2 pb-8 transition-colors">
 			<h1 className="font-sans text-3xl font-semibold">To-Do</h1>
 
 			<Today />

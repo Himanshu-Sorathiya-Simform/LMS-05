@@ -1,5 +1,5 @@
-import { type ActionDispatch, useState } from "react";
-import type { TodosActionState } from "../../reducer/todosReducer.ts";
+import { useTodo } from "@/context/TodoContext.tsx";
+import { useState } from "react";
 import { validate } from "../../utils/validateTodoFormResponse.ts";
 import { Button } from "../ui/button.tsx";
 import { Field, FieldLabel } from "../ui/field.tsx";
@@ -8,10 +8,11 @@ import { Input } from "../ui/input.tsx";
 
 interface CreateTodoModalProps {
 	handleCloseModal: () => void;
-	handleCreate: ActionDispatch<[action: TodosActionState]>;
 }
 
-function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProps) {
+function CreateTodoModal({ handleCloseModal }: CreateTodoModalProps) {
+	const { dispatch } = useTodo();
+
 	const [error, setError] = useState("");
 
 	function handleFormSubmit(e: React.SubmitEvent<HTMLFormElement>) {
@@ -30,7 +31,7 @@ function CreateTodoModal({ handleCloseModal, handleCreate }: CreateTodoModalProp
 		]);
 
 		if (isValid === true) {
-			handleCreate({
+			dispatch({
 				type: "ADD",
 				payload: {
 					id: Math.random(),

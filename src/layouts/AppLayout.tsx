@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button.tsx";
 import { useTheme } from "@/context/ThemeContext.tsx";
-import { useEffect, useReducer } from "react";
+import { useTodo } from "@/context/TodoContext.tsx";
 import Header from "../components/Header.tsx";
 import ListContainer from "../components/ListContainer.tsx";
 import ListItem from "../components/ListItem.tsx";
@@ -8,19 +8,12 @@ import CreateTodoModal from "../components/modals/CreateTodoModal.tsx";
 import DeleteTodoModal from "../components/modals/DeleteTodoModal.tsx";
 import EditTodoModal from "../components/modals/EditTodoModal.tsx";
 import { useModal } from "../hooks/useModal.ts";
-import { todosReducer } from "../reducer/todosReducer.ts";
-import { getLocalStorage, setLocalStorage } from "../utils/localStorage.ts";
 import ModalLayout from "./ModalLayout.tsx";
 
 function AppLayout() {
-	const [todos, dispatch] = useReducer(todosReducer, "todos", getLocalStorage);
-
 	const { theme, toggleTheme } = useTheme();
+	const { todos } = useTodo();
 	const { ref, modalState, handleShowModal, handleCloseModal } = useModal();
-
-	useEffect(() => {
-		setLocalStorage("todos", todos);
-	}, [todos]);
 
 	return (
 		<>
@@ -36,7 +29,6 @@ function AppLayout() {
 								key={todo.id}
 								todo={todo}
 								handleShowModal={handleShowModal}
-								handleEdit={dispatch}
 							/>
 						))}
 					</ListContainer>
@@ -55,21 +47,16 @@ function AppLayout() {
 					onClose={handleCloseModal}
 				>
 					{modalState.type === "create" && (
-						<CreateTodoModal
-							handleCreate={dispatch}
-							handleCloseModal={handleCloseModal}
-						/>
+						<CreateTodoModal handleCloseModal={handleCloseModal} />
 					)}
 					{modalState.type === "edit" && (
 						<EditTodoModal
-							handleEdit={dispatch}
 							handleCloseModal={handleCloseModal}
 							todo={modalState.data}
 						/>
 					)}
 					{modalState.type === "delete" && (
 						<DeleteTodoModal
-							handleDelete={dispatch}
 							handleCloseModal={handleCloseModal}
 							todo={modalState.data}
 						/>

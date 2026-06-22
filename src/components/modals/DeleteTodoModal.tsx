@@ -1,26 +1,23 @@
-import type { ActionDispatch } from "react";
-import type { TodosActionState } from "../../reducer/todosReducer.ts";
+import { useTodo } from "@/context/TodoContext.tsx";
 import type { Todo } from "../../types/types.ts";
 import { Button } from "../ui/button.tsx";
 import Icon from "../ui/Icon.tsx";
 
 interface DeleteTodoModalProps {
 	todo: Todo | undefined;
-	handleDelete: ActionDispatch<[action: TodosActionState]>;
+
 	handleCloseModal: () => void;
 }
 
-function DeleteTodoModal({
-	todo,
-	handleCloseModal,
-	handleDelete,
-}: DeleteTodoModalProps) {
+function DeleteTodoModal({ todo, handleCloseModal }: DeleteTodoModalProps) {
+	const { dispatch } = useTodo();
+
 	if (!todo) return;
 
 	function handleTodoModalDelete() {
 		if (!todo) return;
 
-		handleDelete({ type: "DELETE", payload: todo });
+		dispatch({ type: "DELETE", payload: todo });
 
 		handleCloseModal();
 	}

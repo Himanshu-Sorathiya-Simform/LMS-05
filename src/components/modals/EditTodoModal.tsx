@@ -1,5 +1,5 @@
-import { type ActionDispatch, useState } from "react";
-import type { TodosActionState } from "../../reducer/todosReducer.ts";
+import { useTodo } from "@/context/TodoContext.tsx";
+import { useState } from "react";
 import type { Todo } from "../../types/types.ts";
 import { validate } from "../../utils/validateTodoFormResponse.ts";
 import { Button } from "../ui/button.tsx";
@@ -10,11 +10,13 @@ import Select from "../ui/Select.tsx";
 
 interface EditTodoModalProps {
 	todo: Todo | undefined;
-	handleEdit: ActionDispatch<[action: TodosActionState]>;
+
 	handleCloseModal: () => void;
 }
 
-function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProps) {
+function EditTodoModal({ todo, handleCloseModal }: EditTodoModalProps) {
+	const { dispatch } = useTodo();
+
 	const [error, setError] = useState("");
 
 	if (!todo) return;
@@ -40,7 +42,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 		]);
 
 		if (isValid === true) {
-			handleEdit({
+			dispatch({
 				type: "UPDATE",
 				payload: {
 					...todo,

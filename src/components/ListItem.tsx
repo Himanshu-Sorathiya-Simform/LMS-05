@@ -1,5 +1,5 @@
-import { type ActionDispatch, memo } from "react";
-import type { TodosActionState } from "../reducer/todosReducer.ts";
+import { useTodo } from "@/context/TodoContext.tsx";
+import { memo } from "react";
 import type { Todo } from "../types/types.ts";
 import { formatDate } from "../utils/dateAndTime.ts";
 import { Button } from "./ui/button.tsx";
@@ -10,14 +10,11 @@ import Icon from "./ui/Icon.tsx";
 interface ListItemProps {
 	todo: Todo;
 	handleShowModal: (type: string, data?: Todo) => void;
-	handleEdit: ActionDispatch<[action: TodosActionState]>;
 }
 
-const ListItem = memo(function ListItem({
-	todo,
-	handleShowModal,
-	handleEdit,
-}: ListItemProps) {
+const ListItem = memo(function ListItem({ todo, handleShowModal }: ListItemProps) {
+	const { dispatch } = useTodo();
+
 	function showEditModal() {
 		handleShowModal("edit", todo);
 	}
@@ -42,7 +39,7 @@ const ListItem = memo(function ListItem({
 					checked={todo.completed}
 					className="scale-110 cursor-pointer border-0 ring-1 focus-visible:ring-1 focus-visible:ring-gray-500 focus-visible:ring-offset-1 data-checked:bg-blue-600"
 					onCheckedChange={() => {
-						handleEdit({
+						dispatch({
 							type: "UPDATE",
 							payload: {
 								...todo,

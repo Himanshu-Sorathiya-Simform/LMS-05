@@ -21,7 +21,6 @@
 		"noFallthroughCasesInSwitch": true,
 		"allowUnreachableCode": false,
 		"alwaysStrict": true,
-		"noFallthroughCasesInSwitch": true,
 		"exactOptionalPropertyTypes": true,
 		"noImplicitOverride": true,
 		"noImplicitReturns": true,
@@ -31,7 +30,11 @@
 		"strictNullChecks": true,
 		"strictBindCallApply": true,
 		"strictFunctionTypes": true,
-		"strictPropertyInitialization": true
+		"strictPropertyInitialization": true,
+
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
 	"include": ["vite.config.ts"]
 }

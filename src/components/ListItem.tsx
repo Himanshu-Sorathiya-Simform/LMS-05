@@ -28,7 +28,7 @@ const ListItem = memo(function ListItem({
 
 	return (
 		<li className="group hover:bg-input relative flex items-start gap-3 rounded-md border-gray-500 py-2 pl-3">
-			<span className="absolute top-1/2 -left-44 -translate-y-1/2 text-gray-600 opacity-0 transition-all duration-100 group-hover:opacity-100">
+			<span className="text-muted-foreground absolute top-1/2 -left-44 -translate-y-1/2 opacity-0 transition-all duration-100 group-hover:opacity-100">
 				{formatDate(todo.createdAt)}
 			</span>
 

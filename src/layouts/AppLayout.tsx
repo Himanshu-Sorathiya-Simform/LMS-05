@@ -48,34 +48,34 @@ function AppLayout() {
 				>
 					Toggle to {theme === "light" ? "Dark" : "Light"}
 				</Button>
-			</section>
 
-			<ModalLayout
-				ref={ref}
-				className="m-auto"
-				onClose={handleCloseModal}
-			>
-				{modalState.type === "create" && (
-					<CreateTodoModal
-						handleCreate={dispatch}
-						handleCloseModal={handleCloseModal}
-					/>
-				)}
-				{modalState.type === "edit" && (
-					<EditTodoModal
-						handleEdit={dispatch}
-						handleCloseModal={handleCloseModal}
-						todo={modalState.data}
-					/>
-				)}
-				{modalState.type === "delete" && (
-					<DeleteTodoModal
-						handleDelete={dispatch}
-						handleCloseModal={handleCloseModal}
-						todo={modalState.data}
-					/>
-				)}
-			</ModalLayout>
+				<ModalLayout
+					ref={ref}
+					className="m-auto"
+					onClose={handleCloseModal}
+				>
+					{modalState.type === "create" && (
+						<CreateTodoModal
+							handleCreate={dispatch}
+							handleCloseModal={handleCloseModal}
+						/>
+					)}
+					{modalState.type === "edit" && (
+						<EditTodoModal
+							handleEdit={dispatch}
+							handleCloseModal={handleCloseModal}
+							todo={modalState.data}
+						/>
+					)}
+					{modalState.type === "delete" && (
+						<DeleteTodoModal
+							handleDelete={dispatch}
+							handleCloseModal={handleCloseModal}
+							todo={modalState.data}
+						/>
+					)}
+				</ModalLayout>
+			</section>
 		</>
 	);
 }

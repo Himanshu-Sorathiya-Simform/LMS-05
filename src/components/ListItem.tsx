@@ -2,7 +2,7 @@ import { type ActionDispatch, memo } from "react";
 import type { TodosActionState } from "../reducer/todosReducer.ts";
 import type { Todo } from "../types/types.ts";
 import { formatDate } from "../utils/dateAndTime.ts";
-import Button from "./ui/Button.tsx";
+import { Button } from "./ui/button.tsx";
 import Icon from "./ui/Icon.tsx";
 import Input from "./ui/Input.tsx";
 
@@ -67,24 +67,24 @@ const ListItem = memo(function ListItem({
 			</div>
 
 			<Button
-				className="mt-2 cursor-pointer rounded-lg p-1.5 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
-				label="Edit Todo"
+				className="mt-2 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
+				aria-label="Edit Todo"
 				onClick={showEditModal}
 			>
 				<Icon
 					id="edit"
-					className="h-6 w-6"
+					className="size-6 text-gray-500"
 				></Icon>
 			</Button>
 
 			<Button
-				className="mt-2 cursor-pointer rounded-lg p-1.5 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
-				label="Delete Todo"
+				className="mt-2 box-content cursor-pointer rounded-lg bg-transparent py-1 opacity-0 transition-all duration-100 group-hover:opacity-100 hover:bg-neutral-200 focus-visible:outline-1 focus-visible:outline-gray-500"
+				aria-label="Delete Todo"
 				onClick={showDeleteModal}
 			>
 				<Icon
 					id="delete"
-					className="h-6 w-6 stroke-1 text-red-500"
+					className="size-6 stroke-1 text-red-500"
 				></Icon>
 			</Button>
 		</li>

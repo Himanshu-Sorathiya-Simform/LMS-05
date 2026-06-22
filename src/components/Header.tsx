@@ -1,7 +1,7 @@
 import { memo } from "react";
 import type { Todo } from "../types/types.ts";
 import Today from "./Today.tsx";
-import Button from "./ui/Button.tsx";
+import { Button } from "./ui/button.tsx";
 import Icon from "./ui/Icon.tsx";
 
 interface HeaderProps {
@@ -21,7 +21,7 @@ const Header = memo(function Header({ handleShowModal }: HeaderProps) {
 
 			<div className="flex gap-2">
 				<Button
-					className="gap-1 rounded-full bg-blue-600 px-4 py-2 font-semibold text-white duration-100 hover:bg-blue-700 focus:bg-blue-700 focus:outline-1 focus:outline-blue-700"
+					className="box-content flex cursor-pointer items-center justify-center gap-1 rounded-full bg-blue-600 px-4 py-1 font-semibold text-white transition hover:bg-blue-500 focus-visible:bg-blue-500 focus-visible:ring-0"
 					onClick={showCreateModal}
 				>
 					<Icon

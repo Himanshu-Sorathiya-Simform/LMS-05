@@ -2,7 +2,7 @@ import { type ActionDispatch, useState } from "react";
 import type { TodosActionState } from "../../reducer/todosReducer.ts";
 import type { Todo } from "../../types/types.ts";
 import { validate } from "../../utils/validateTodoFormResponse.ts";
-import Button from "../ui/Button.tsx";
+import { Button } from "../ui/button.tsx";
 import Icon from "../ui/Icon.tsx";
 import Input from "../ui/Input.tsx";
 import Select from "../ui/Select.tsx";
@@ -91,7 +91,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 
 				<div className="mt-2 flex justify-end gap-2">
 					<Button
-						className="rounded-md bg-stone-300 px-4 py-2 outline-0 duration-75 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-stone-800"
+						className="box-content cursor-pointer rounded-md bg-stone-300 px-4 py-1 text-black outline-0 duration-75 hover:bg-stone-300 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-stone-800"
 						onClick={handleCloseModal}
 					>
 						Cancel
@@ -99,7 +99,7 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 
 					<Button
 						type="submit"
-						className="rounded-md bg-orange-300 px-4 py-2 outline-0 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-orange-800"
+						className="box-content cursor-pointer rounded-md bg-orange-300 px-4 py-1 text-black outline-0 hover:bg-orange-300 hover:brightness-90 focus:brightness-90 focus-visible:outline-2 focus-visible:outline-orange-800"
 					>
 						Update
 					</Button>
@@ -107,12 +107,12 @@ function EditTodoModal({ todo, handleCloseModal, handleEdit }: EditTodoModalProp
 			</form>
 
 			<Button
-				className="absolute top-0 right-0 rounded-full p-1 outline-0 duration-75 hover:bg-stone-200 focus:bg-stone-200 focus-visible:outline-1 focus-visible:outline-stone-800"
+				className="absolute top-0 right-0 box-content cursor-pointer rounded-full bg-transparent py-1.5 text-lg text-black outline-0 duration-75 hover:bg-stone-200 focus:bg-stone-200 focus-visible:outline-1 focus-visible:outline-stone-800"
 				onClick={handleCloseModal}
 			>
 				<Icon
 					id="close"
-					className="h-6 w-6"
+					className="size-6"
 				/>
 			</Button>
 		</div>

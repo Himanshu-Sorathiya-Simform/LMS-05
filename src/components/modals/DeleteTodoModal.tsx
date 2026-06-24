@@ -17,7 +17,7 @@ function DeleteTodoModal({ todo, handleCloseModal }: DeleteTodoModalProps) {
 	function handleTodoModalDelete() {
 		if (!todo) return;
 
-		dispatch({ type: "DELETE", payload: todo });
+		dispatch({ type: "DELETE", payload: todo.id });
 
 		handleCloseModal();
 	}

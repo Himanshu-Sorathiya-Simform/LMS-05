@@ -1,36 +1,39 @@
 import type { Todo } from "../types/types.ts";
 
-interface TodosActionState {
-	type: "ADD" | "UPDATE" | "DELETE";
-	payload: Todo;
-}
+type TodosActionState =
+	| {
+			type: "ADD";
+			payload: Todo;
+	  }
+	| {
+			type: "UPDATE";
+			payload: Todo;
+	  }
+	| {
+			type: "DELETE";
+			payload: number;
+	  };
 
 function todosReducer(todos: Todo[], action: TodosActionState) {
 	switch (action.type) {
 		case "ADD": {
-			const newTodos = [action.payload, ...todos];
+			const newTodo = action.payload;
 
-			return newTodos;
+			return [newTodo, ...todos];
 		}
 
 		case "UPDATE": {
-			const index = todos.findIndex((todo) => todo.id === action.payload.id);
+			const updatedTodo = action.payload;
 
-			const newTodos = [
-				...todos.slice(0, index),
-				action.payload,
-				...todos.slice(index + 1),
-			];
-
-			return newTodos;
+			return todos.filter((todo) =>
+				todo.id === updatedTodo.id ? updatedTodo : todo,
+			);
 		}
 
 		case "DELETE": {
-			const index = todos.findIndex((todo) => todo.id === action.payload.id);
+			const todoId = action.payload;
 
-			const newTodos = [...todos.slice(0, index), ...todos.slice(index + 1)];
-
-			return newTodos;
+			return todos.filter((todo) => todo.id !== todoId);
 		}
 
 		default:

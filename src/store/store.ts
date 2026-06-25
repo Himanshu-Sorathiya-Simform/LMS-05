@@ -7,6 +7,12 @@ const store = configureStore({
 	},
 });
 
+store.subscribe(() => {
+	const theme = store.getState().theme.theme;
+
+	localStorage.setItem("theme", theme);
+});
+
 type RootState = ReturnType<typeof store.getState>;
 
 export { store };

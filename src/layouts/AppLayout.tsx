@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button.tsx";
-import { useTheme } from "@/context/ThemeContext.tsx";
 import { useTodo } from "@/context/TodoContext.tsx";
+import { toggleTheme } from "@/slices/themeSlice.ts";
+import type { RootState } from "@/store/store.ts";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header.tsx";
 import ListContainer from "../components/ListContainer.tsx";
 import ListItem from "../components/ListItem.tsx";
@@ -11,7 +13,9 @@ import { useModal } from "../hooks/useModal.ts";
 import ModalLayout from "./ModalLayout.tsx";
 
 function AppLayout() {
-	const { theme, toggleTheme } = useTheme();
+	const theme = useSelector((state: RootState) => state.theme.theme);
+	const dispatch = useDispatch();
+
 	const { todos } = useTodo();
 	const { ref, modalState, handleShowModal, handleCloseModal } = useModal();
 
@@ -36,7 +40,7 @@ function AppLayout() {
 
 				<Button
 					className="fixed bottom-5 left-5 cursor-pointer"
-					onClick={toggleTheme}
+					onClick={() => dispatch(toggleTheme())}
 				>
 					Toggle to {theme === "light" ? "Dark" : "Light"}
 				</Button>

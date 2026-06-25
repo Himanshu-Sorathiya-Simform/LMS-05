@@ -30,55 +30,52 @@ function AppLayout() {
 
 	return (
 		<>
-			{todosStatus === "pending" ?
-				"Loading"
-			:	<section
-					className={`${theme === "dark" ? "dark" : ""} bg-secondary text-secondary-foreground relative flex min-h-screen w-full scrollbar-gutter-both justify-center px-6 pb-6 transition-colors`}
+			<section
+				className={`${theme === "dark" ? "dark" : ""} bg-secondary text-secondary-foreground relative flex min-h-screen w-full scrollbar-gutter-both justify-center px-6 pb-6 transition-colors`}
+			>
+				<div className="flex h-full w-2xl max-w-full flex-col items-center gap-8">
+					<Header handleShowModal={handleShowModal} />
+
+					<ListContainer>
+						{todos.toReversed().map((todo) => (
+							<ListItem
+								key={todo.id}
+								todo={todo}
+								handleShowModal={handleShowModal}
+							/>
+						))}
+					</ListContainer>
+				</div>
+
+				<Button
+					className="fixed bottom-5 left-5 cursor-pointer"
+					onClick={() => dispatch(toggleTheme())}
 				>
-					<div className="flex h-full w-2xl max-w-full flex-col items-center gap-8">
-						<Header handleShowModal={handleShowModal} />
+					Toggle to {theme === "light" ? "Dark" : "Light"}
+				</Button>
 
-						<ListContainer>
-							{todos.toReversed().map((todo) => (
-								<ListItem
-									key={todo.id}
-									todo={todo}
-									handleShowModal={handleShowModal}
-								/>
-							))}
-						</ListContainer>
-					</div>
-
-					<Button
-						className="fixed bottom-5 left-5 cursor-pointer"
-						onClick={() => dispatch(toggleTheme())}
-					>
-						Toggle to {theme === "light" ? "Dark" : "Light"}
-					</Button>
-
-					<ModalLayout
-						ref={ref}
-						className="m-auto"
-						onClose={handleCloseModal}
-					>
-						{modalState.type === "create" && (
-							<CreateTodoModal handleCloseModal={handleCloseModal} />
-						)}
-						{modalState.type === "edit" && (
-							<EditTodoModal
-								handleCloseModal={handleCloseModal}
-								todo={modalState.data}
-							/>
-						)}
-						{modalState.type === "delete" && (
-							<DeleteTodoModal
-								handleCloseModal={handleCloseModal}
-								todo={modalState.data}
-							/>
-						)}
-					</ModalLayout>
-				</section>
-			}
+				<ModalLayout
+					ref={ref}
+					className="m-auto"
+					onClose={handleCloseModal}
+				>
+					{modalState.type === "create" && (
+						<CreateTodoModal handleCloseModal={handleCloseModal} />
+					)}
+					{modalState.type === "edit" && (
+						<EditTodoModal
+							handleCloseModal={handleCloseModal}
+							todo={modalState.data}
+						/>
+					)}
+					{modalState.type === "delete" && (
+						<DeleteTodoModal
+							handleCloseModal={handleCloseModal}
+							todo={modalState.data}
+						/>
+					)}
+				</ModalLayout>
+			</section>
 		</>
 	);
 }

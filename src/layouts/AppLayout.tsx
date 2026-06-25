@@ -28,7 +28,7 @@ function AppLayout() {
 					<Header handleShowModal={handleShowModal} />
 
 					<ListContainer>
-						{todos.reverse().map((todo) => (
+						{todos.toReversed().map((todo) => (
 							<ListItem
 								key={todo.id}
 								todo={todo}

@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button.tsx";
 import { useTodo } from "@/context/TodoContext.tsx";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks.ts";
 import { toggleTheme } from "@/slices/themeSlice.ts";
 import type { RootState } from "@/store/store.ts";
-import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header.tsx";
 import ListContainer from "../components/ListContainer.tsx";
 import ListItem from "../components/ListItem.tsx";
@@ -13,8 +13,8 @@ import { useModal } from "../hooks/useModal.ts";
 import ModalLayout from "./ModalLayout.tsx";
 
 function AppLayout() {
-	const theme = useSelector((state: RootState) => state.theme.theme);
-	const dispatch = useDispatch();
+	const theme = useAppSelector((state: RootState) => state.theme.theme);
+	const dispatch = useAppDispatch();
 
 	const { todos } = useTodo();
 	const { ref, modalState, handleShowModal, handleCloseModal } = useModal();

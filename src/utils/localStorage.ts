@@ -1,7 +1,11 @@
 function getLocalStorageData<T>(key: string, defaultValue: T) {
 	const data = localStorage.getItem(key);
 
-	if (!data) return defaultValue;
+	if (!data) {
+		setLocalStorageData(key, defaultValue);
+
+		return defaultValue;
+	}
 
 	return JSON.parse(data) as T;
 }

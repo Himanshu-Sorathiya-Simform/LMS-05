@@ -1,26 +1,26 @@
-import { useTodo } from "@/context/TodoContext.tsx";
+import { useAppDispatch } from "@/hooks/hooks.ts";
+import { deleteTodo } from "@/slices/todoSlice.ts";
 import type { Todo } from "../../types/types.ts";
 import { Button } from "../ui/button.tsx";
 import Icon from "../ui/Icon.tsx";
 
 interface DeleteTodoModalProps {
 	todo: Todo | undefined;
-
 	handleCloseModal: () => void;
 }
 
 function DeleteTodoModal({ todo, handleCloseModal }: DeleteTodoModalProps) {
-	const { dispatch } = useTodo();
-
-	if (!todo) return;
+	const dispatch = useAppDispatch();
 
 	function handleTodoModalDelete() {
 		if (!todo) return;
 
-		dispatch({ type: "DELETE", payload: todo.id });
+		dispatch(deleteTodo(todo));
 
 		handleCloseModal();
 	}
+
+	if (!todo) return;
 
 	return (
 		<div className="relative flex flex-col gap-7">

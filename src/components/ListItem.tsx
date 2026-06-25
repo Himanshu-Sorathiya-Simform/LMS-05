@@ -1,4 +1,5 @@
-import { useTodo } from "@/context/TodoContext.tsx";
+import { useAppDispatch } from "@/hooks/hooks.ts";
+import { updateTodo } from "@/slices/todoSlice.ts";
 import { memo } from "react";
 import type { Todo } from "../types/types.ts";
 import { formatDate } from "../utils/dateAndTime.ts";
@@ -13,7 +14,7 @@ interface ListItemProps {
 }
 
 const ListItem = memo(function ListItem({ todo, handleShowModal }: ListItemProps) {
-	const { dispatch } = useTodo();
+	const dispatch = useAppDispatch();
 
 	function showEditModal() {
 		handleShowModal("edit", todo);
@@ -39,14 +40,13 @@ const ListItem = memo(function ListItem({ todo, handleShowModal }: ListItemProps
 					checked={todo.completed}
 					className="scale-110 cursor-pointer border-0 ring-1 focus-visible:ring-1 focus-visible:ring-gray-500 focus-visible:ring-offset-1 data-checked:bg-blue-600"
 					onCheckedChange={() => {
-						dispatch({
-							type: "UPDATE",
-							payload: {
+						dispatch(
+							updateTodo({
 								...todo,
 								completed: !todo.completed,
 								completedAt: todo.completed ? -1 : Date.now(),
-							},
-						});
+							}),
+						);
 					}}
 				/>
 

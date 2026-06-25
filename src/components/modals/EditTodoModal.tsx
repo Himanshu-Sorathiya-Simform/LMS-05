@@ -1,4 +1,5 @@
-import { useTodo } from "@/context/TodoContext.tsx";
+import { useAppDispatch } from "@/hooks/hooks.ts";
+import { updateTodo } from "@/slices/todoSlice.ts";
 import { useState } from "react";
 import type { Todo } from "../../types/types.ts";
 import { validate } from "../../utils/validateTodoFormResponse.ts";
@@ -10,16 +11,13 @@ import Select from "../ui/Select.tsx";
 
 interface EditTodoModalProps {
 	todo: Todo | undefined;
-
 	handleCloseModal: () => void;
 }
 
 function EditTodoModal({ todo, handleCloseModal }: EditTodoModalProps) {
-	const { dispatch } = useTodo();
-
 	const [error, setError] = useState("");
 
-	if (!todo) return;
+	const dispatch = useAppDispatch();
 
 	function handleFormSubmit(e: React.SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -42,21 +40,22 @@ function EditTodoModal({ todo, handleCloseModal }: EditTodoModalProps) {
 		]);
 
 		if (isValid === true) {
-			dispatch({
-				type: "UPDATE",
-				payload: {
+			dispatch(
+				updateTodo({
 					...todo,
 					title: titleVal,
 					description: descriptionVal,
 					completed: completedVal,
 					completedAt: completedVal === true ? Date.now() : -1,
-				},
-			});
+				}),
+			);
 			handleCloseModal();
 		} else {
 			setError(error);
 		}
 	}
+
+	if (!todo) return;
 
 	return (
 		<div className="relative flex flex-col gap-7">

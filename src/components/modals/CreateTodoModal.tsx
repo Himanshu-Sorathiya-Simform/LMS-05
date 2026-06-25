@@ -1,4 +1,5 @@
-import { useTodo } from "@/context/TodoContext.tsx";
+import { useAppDispatch } from "@/hooks/hooks.ts";
+import { addTodo } from "@/slices/todoSlice.ts";
 import { useState } from "react";
 import { validate } from "../../utils/validateTodoFormResponse.ts";
 import { Button } from "../ui/button.tsx";
@@ -11,9 +12,9 @@ interface CreateTodoModalProps {
 }
 
 function CreateTodoModal({ handleCloseModal }: CreateTodoModalProps) {
-	const { dispatch } = useTodo();
-
 	const [error, setError] = useState("");
+
+	const dispatch = useAppDispatch();
 
 	function handleFormSubmit(e: React.SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -31,17 +32,17 @@ function CreateTodoModal({ handleCloseModal }: CreateTodoModalProps) {
 		]);
 
 		if (isValid === true) {
-			dispatch({
-				type: "ADD",
-				payload: {
+			dispatch(
+				addTodo({
 					id: Math.random(),
 					title: titleVal,
 					description: descriptionVal,
 					createdAt: Date.now(),
 					completed: false,
 					completedAt: -1,
-				},
-			});
+				}),
+			);
+
 			handleCloseModal();
 		} else {
 			setError(error);

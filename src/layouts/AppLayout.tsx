@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button.tsx";
-import { useTodo } from "@/context/TodoContext.tsx";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks.ts";
 import { toggleTheme } from "@/slices/themeSlice.ts";
 import type { RootState } from "@/store/store.ts";
@@ -14,9 +13,10 @@ import ModalLayout from "./ModalLayout.tsx";
 
 function AppLayout() {
 	const theme = useAppSelector((state: RootState) => state.theme.theme);
+	const todos = useAppSelector((state) => state.todo.todos);
+
 	const dispatch = useAppDispatch();
 
-	const { todos } = useTodo();
 	const { ref, modalState, handleShowModal, handleCloseModal } = useModal();
 
 	return (
